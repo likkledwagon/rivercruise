@@ -26,12 +26,16 @@ namespace RiverCruise.Models.Company
 
         public string Name { get; set; }
         public IEnumerable<CompanyshipsModel> Ships { get; set; }
+        [Display(Name = "Nautical crew")]
         public int NauticalCrew { get; set; }
+        [Display(Name = "Hotel staff")]
         public int HotelStaff { get; set; }
         public int Reports { get; set; }
+        [Display(Name = "Ships visited")]
         public int ShipsVisited { get; set; }
         public int Id { get; set; }
 
+        [Display(Name = "% of ships visited")]
         public string PercentageShipsVisited
         {
             get

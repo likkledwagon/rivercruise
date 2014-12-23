@@ -1,13 +1,21 @@
-﻿- Reports Migratie
+﻿small
+-----
+- cannot delete own user
+- ship detail
+- Companyshipsmodel
+
+big
+---
+- Reports Migratie
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)
 
-- Bewerken gegevens
+Bewerken gegevens
+-----------------
+- Company add
+- Ship add
+- Report add
 
-	- Company add
-	- Ship add
-	- Report add
-
-	- Company edit
-	- Ship edit
-	- Report edit
+- Company edit
+- Ship edit
+- Report edit
