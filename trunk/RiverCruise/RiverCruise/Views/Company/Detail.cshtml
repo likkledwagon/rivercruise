@@ -1,4 +1,5 @@
-﻿@model RiverCruise.Models.Company.CompanyDetailViewModel
+﻿@using RiverCruise.Helpers
+@model RiverCruise.Models.Company.CompanyDetailViewModel
 
 @{
     ViewBag.Title = "Company Detail";
@@ -39,7 +40,22 @@
             </div>
         </div>
     </div>
-    <h4>Ships</h4>
+    <br/>
+    <h4>
+        @if (Roles.IsUserInRole(RoleHelper.Edit))
+        { 
+            <span class="btn-group pull-right">
+                <a href="@Url.Action("AddShip", "ShipManagement", new {CompanyId = Model.Id })" class="btn btn-default alert-success">
+
+                    <span class="glyphicon glyphicon glyphicon-plus"></span>
+                    Add New
+                </a>
+            </span>
+        }
+        <span class="h4content">
+            Ships
+        </span>
+    </h4> 
     <div class="container-fluid">
         <hr/>
         @foreach (var ship in @Model.Ships)

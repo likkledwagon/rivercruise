@@ -38,4 +38,21 @@
     $("input[data-otf-autocomplete]").each(createAutoComplete);
 
     $(".pageContent").on("click", ".pagination a", getPage);
+
+    $("form.triggerModal").submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+
+        var options = {
+            url: '/' + form.attr("data-rc-modalcontroller") + '/' + form.attr("data-rc-modalaction"),
+            type: "get",
+            data: form.serialize(),
+        };
+
+        $.ajax(options).done(function (data) {
+            $("#modalPlaceHolder").html(data);
+            $("#partialModal").modal('show');
+        });
+        return false;
+    });
 })

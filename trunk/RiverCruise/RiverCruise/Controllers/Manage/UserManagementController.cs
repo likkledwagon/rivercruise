@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using RiverCruise.Helpers;
+using RiverCruise.Models.Shared;
 using RiverCruise.Models.UserManagement;
 using WebMatrix.WebData;
 
@@ -53,6 +54,26 @@ namespace RiverCruise.Controllers.Manage
             if (model.CanEdit)
             {
                 Roles.AddUserToRole(model.Name, RoleHelper.Edit);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteGet(string userName)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var modalModel = new ModalModel()
+                {
+                    Action = "Delete",
+                    Arguments = new Dictionary<string, object>() {{"userName", userName}},
+                    Body = "Are you sure you want to delete " + userName + "?",
+                    Controller = "UserManagement",
+                    Title = "Confirm"
+                };
+
+                return PartialView("Modal", modalModel);
             }
 
             return RedirectToAction("Index");
