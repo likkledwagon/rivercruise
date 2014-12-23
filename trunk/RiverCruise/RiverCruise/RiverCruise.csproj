@@ -129,10 +129,12 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EditShipsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Manage\UserManagementController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\RoleHelper.cs" />
     <Compile Include="Models\Account\User.cs" />
     <Compile Include="Models\BasePagingModel.cs" />
     <Compile Include="Models\Company\CompaniesOverviewViewModel.cs" />
@@ -143,6 +145,8 @@
     <Compile Include="Models\Ship\ShipReportViewModel.cs" />
     <Compile Include="Models\Ship\ShipsOverviewViewModel.cs" />
     <Compile Include="Models\Ship\ShipViewModel.cs" />
+    <Compile Include="Models\UserManagement\UsersViewModel.cs" />
+    <Compile Include="Models\UserManagement\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +244,7 @@
     <Content Include="Views\Shared\_Paging.cshtml" />
     <Content Include="Views\Company\_Companies.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\UserManagement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

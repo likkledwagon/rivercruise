@@ -1,0 +1,50 @@
+﻿@model RiverCruise.Models.UserManagement.UsersViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    
+    <h2>
+        <span class="btn-group pull-right">
+            <a href="@Url.Action("Add", "UserManagement")" class="btn btn-default alert-success">
+
+                <span class="glyphicon glyphicon glyphicon-plus"></span>
+                Add New
+            </a>
+        </span>
+        Manage Users
+    </h2>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Can Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @user.UserName
+                    </td>
+                    <td>
+                        @if (user.CanEdit)
+                        {
+                            <span class="glyphicon glyphicon-ok success"></span>
+                        }
+                        else
+                        {
+                            <span class="glyphicon glyphicon-remove danger"></span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
