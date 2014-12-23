@@ -145,6 +145,7 @@
     <Compile Include="Models\Ship\ShipReportViewModel.cs" />
     <Compile Include="Models\Ship\ShipsOverviewViewModel.cs" />
     <Compile Include="Models\Ship\ShipViewModel.cs" />
+    <Compile Include="Models\UserManagement\AddUserViewModel.cs" />
     <Compile Include="Models\UserManagement\UsersViewModel.cs" />
     <Compile Include="Models\UserManagement\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -245,6 +246,7 @@
     <Content Include="Views\Company\_Companies.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\UserManagement\Index.cshtml" />
+    <Content Include="Views\UserManagement\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

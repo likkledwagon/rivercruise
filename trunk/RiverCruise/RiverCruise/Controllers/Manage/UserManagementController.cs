@@ -21,5 +21,35 @@ namespace RiverCruise.Controllers.Manage
             }
             return View(new UsersViewModel(users, editusers));
         }
+
+        public ActionResult Add()
+        {
+            var model = new AddUserViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(AddUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (model.Password != model.PasswordConfirm)
+            {
+                ModelState.AddModelError("Password", "Passwords don't match");
+                return View(model);
+            }
+
+            WebSecurity.CreateUserAndAccount(model.Name, model.Password);
+            if (model.CanEdit)
+            {
+                Roles.AddUserToRole(model.Name, RoleHelper.Edit);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

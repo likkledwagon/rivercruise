@@ -40,28 +40,6 @@ namespace RiverCruise.Controllers
 
             return RedirectToAction("Index", "Home");
             
-
-            /*
-            string encrypt = Encryption.Encrypt(model.Password);
-            bool userValid =
-                _db.UserProfiles.Any(x => x.UserName.Equals(model.UserName) && x.Password.Equals(encrypt));
-
-            var returnUrl = model.Returnurl;
-
-            if (userValid)
-            {
-                FormsAuthentication.SetAuthCookie(model.UserName, false);
-                if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                {
-                    return Redirect(returnUrl);
-                }
-
-                return RedirectToAction("Index", "Home");
-            }
-
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            */
         }
 
         public ActionResult LogOff()
