@@ -43,11 +43,39 @@ namespace RiverCruise.Controllers.Manage
                 return View(model);
             }
 
+            if (WebSecurity.UserExists(model.Name))
+            {
+                ModelState.AddModelError("Name", "A user by that name allready exists");
+                return View(model);
+            }
+
             WebSecurity.CreateUserAndAccount(model.Name, model.Password);
             if (model.CanEdit)
             {
                 Roles.AddUserToRole(model.Name, RoleHelper.Edit);
             }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(string userName = "")
+        {
+            if (string.IsNullOrEmpty(userName) || !WebSecurity.UserExists(userName))
+            { 
+                return RedirectToAction("Index");
+            }
+
+            string[] allRoles = Roles.GetRolesForUser(userName);
+            if(allRoles.Any())
+            { 
+                Roles.RemoveUserFromRoles(userName, allRoles);
+            }
+
+            ((SimpleMembershipProvider)Membership.Provider).DeleteAccount(userName);
+            Membership.Provider.DeleteUser(userName, true);
+            Membership.DeleteUser(userName, true);
 
             return RedirectToAction("Index");
         }
