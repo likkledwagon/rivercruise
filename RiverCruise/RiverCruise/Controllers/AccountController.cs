@@ -13,18 +13,20 @@ namespace RiverCruise.Controllers
     public class AccountController:BaseController
     {
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
-            return View();
+            ViewBag.ReturnUrl = returnUrl;
+            return View(new User()
+            {
+                ReturnUrl = returnUrl
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult Login(User model)
+        public ActionResult Login(User model, string returnUrl)
         {
-            
-            var returnUrl = model.Returnurl;
             if (!WebSecurity.Login(model.UserName, model.Password))
             {
                 ModelState.AddModelError("", "The user name or password provided is incorrect.");

@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
+using RiverCruise.Helpers;
 using WebMatrix.WebData;
 
 namespace RiverCruise
@@ -20,6 +22,15 @@ namespace RiverCruise
             if (!WebSecurity.UserExists("LikkleDwagon"))
             {
                 WebSecurity.CreateUserAndAccount("LikkleDwagon", "Feestje4en!");
+            }
+            if (!Roles.RoleExists(RoleHelper.Edit))
+            {
+                Roles.CreateRole(RoleHelper.Edit);
+            }
+
+            if (!Roles.GetRolesForUser("LikkleDwagon").Contains(RoleHelper.Edit))
+            {
+                Roles.AddUserToRole("LikkleDwagon", RoleHelper.Edit);
             }
 
             AreaRegistration.RegisterAllAreas();

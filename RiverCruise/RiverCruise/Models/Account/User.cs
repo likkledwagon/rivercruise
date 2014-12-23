@@ -8,6 +8,6 @@ namespace RiverCruise.Models.Account
         public string UserName { get; set; }
 
         public string Password { get; set; }
-        public string Returnurl { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }
