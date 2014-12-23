@@ -1,0 +1,35 @@
+﻿@model RiverCruise.Models.Ship.ShipsOverviewViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home";
+}
+<div class="container-fluid">
+    
+    <!--searchform-->
+    <div class="pull-right">
+        @using (Ajax.BeginForm(null, null, new AjaxOptions()
+        {
+            HttpMethod = "get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "pagerTarget"
+        },
+            new { @class="navbar-form"}))
+        {
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="searchText" id="searchText" data-otf-autocomplete="@Url.Action("AutoComplete", "Home")">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        }
+    </div>
+    <!--searchform-->
+
+    <h2>
+        Ships
+    </h2>
+
+    @Html.Partial("~/Views/Home/_Ships.cshtml", Model)
+
+</div>

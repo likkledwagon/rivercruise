@@ -1,0 +1,20 @@
+﻿@model RiverCruise.Models.Company.CompaniesOverviewViewModel
+
+<div id="pagerTarget">
+    
+    @Html.Partial("_Paging", Model)
+    
+    <div>
+        @foreach (var company in Model.Companies)
+        {
+            <hr />
+            <div class="container-fluid">
+                <div class="pull-right">@Html.LabelFor(x => company.Ships) @company.Ships</div>
+                <h4>@Html.ActionLink(company.Name, "Detail", "Company", new { company.Id }, null)</h4>
+            </div>
+        }
+    </div>
+    
+    @Html.Partial("_Paging", Model)
+
+</div>
