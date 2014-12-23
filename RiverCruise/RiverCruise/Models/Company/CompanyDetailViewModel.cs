@@ -21,6 +21,7 @@ namespace RiverCruise.Models.Company
             HotelStaff = company.Ships.Sum(x => x.HotelStaff != null ? x.HotelStaff.Value : 0);
             Reports = company.Reports.Count;
             ShipsVisited = company.Ships.Count(x => x.Reports.Any());
+            Id = company.Id;
         }
 
         public string Name { get; set; }

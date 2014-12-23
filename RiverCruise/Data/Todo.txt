@@ -1,10 +1,8 @@
-﻿- Security edit role
-- Reports Migratie
+﻿- Reports Migratie
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)
 
 - Bewerken gegevens
-	- users management
 
 	- Company add
 	- Ship add

@@ -126,9 +126,11 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BaseManagementController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EditShipsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Manage\ShipManagementController.cs" />
     <Compile Include="Controllers\Manage\UserManagementController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
@@ -140,6 +142,9 @@
     <Compile Include="Models\Company\CompaniesOverviewViewModel.cs" />
     <Compile Include="Models\Company\CompanyDetailViewModel.cs" />
     <Compile Include="Models\Report\ReportsViewModel.cs" />
+    <Compile Include="Models\Shared\ModalModel.cs" />
+    <Compile Include="Models\ShipManagement\NewShipCompanyViewModel.cs" />
+    <Compile Include="Models\ShipManagement\NewShipViewModel.cs" />
     <Compile Include="Models\Ship\ShipDetailModel.cs" />
     <Compile Include="Models\Ship\ShipDetailReportViewModel.cs" />
     <Compile Include="Models\Ship\ShipReportViewModel.cs" />
@@ -247,6 +252,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\UserManagement\Index.cshtml" />
     <Content Include="Views\UserManagement\Add.cshtml" />
+    <Content Include="Views\ShipManagement\AddShip.cshtml" />
+    <Content Include="Views\Shared\Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
