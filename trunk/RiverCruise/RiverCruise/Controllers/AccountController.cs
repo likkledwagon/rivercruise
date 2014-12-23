@@ -27,6 +27,20 @@ namespace RiverCruise.Controllers
         [AllowAnonymous]
         public ActionResult Login(User model, string returnUrl)
         {
+            if (string.IsNullOrEmpty(model.UserName) || string.IsNullOrEmpty(model.Password))
+            {
+                if (string.IsNullOrEmpty(model.UserName))
+                { 
+                    ModelState.AddModelError("UserName", "User name cannot be empty");
+                }
+                if (string.IsNullOrEmpty(model.Password))
+                {
+                    ModelState.AddModelError("PassWord", "Password cannot be empty");
+                }
+
+                return View(model);
+            }
+
             if (!WebSecurity.Login(model.UserName, model.Password))
             {
                 ModelState.AddModelError("", "The user name or password provided is incorrect.");
