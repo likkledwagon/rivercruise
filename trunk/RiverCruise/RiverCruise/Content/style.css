@@ -1,0 +1,41 @@
+h1 {
+    color: #115
+}
+
+h2 {
+    color: #555;
+}
+
+h3 {
+    color: #888;
+}
+
+h4 {
+    color: #aaa;
+}
+
+#loginBox {
+    margin-top: 20px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #E5E5E5;
+    background-color: #F5F5F5;
+    margin-bottom: 50px;
+}
+
+body {
+    background-color: #dfdfdf;
+}
+
+.wrapper {
+    background-color: #FFF;
+    
+    -webkit-box-shadow: 10px 10px 5px #CCC;
+    -ms-box-shadow: 10px 10px 5px #CCC;
+    box-shadow: 10px 10px 5px #CCC;
+    padding: 22px;
+}
+
+.pageBlock a{
+    width: 40px;
+}

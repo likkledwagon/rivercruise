@@ -1,0 +1,37 @@
+﻿@model RiverCruise.Models.Ship.ShipsOverviewViewModel
+
+<div id="pagerTarget">
+    
+    
+    @Html.Partial("_Paging", Model)
+
+    <div>
+        @foreach (var ship in Model.ItemsList)
+        {
+            <hr />
+            <div class="container-fluid">
+                <h4>
+                    @Html.ActionLink(ship.Name, "Detail", "Home", new { Id = ship.Id }, null)
+                    <span class="pull-right">
+                        <small>
+                            @if (ship.Company != null)
+                            {
+                                @Html.ActionLink(ship.Company, "Detail", "Company", new
+                            {
+                                id = ship.CompanyId
+                            }, null)
+                            }
+                        </small>
+                    </span>
+                </h4>
+                <div class="clearfix"></div>
+                <label>Region: </label> @ship.Region<br />
+                <label>Reports: </label> @ship.ShipReportViewModel.Count<br />
+                <label>Last Report : </label>@ship.ShipReportViewModel.LastReport
+            </div>
+        }
+    </div>
+
+    @Html.Partial("_Paging", Model)
+
+</div>
