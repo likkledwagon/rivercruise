@@ -41,14 +41,17 @@ body {
 }
 
 .bs-callout {
-    padding: 20px;
+    padding: 5px;
+    padding-top: 15px;
     margin: 20px 0;
     border: 1px solid #eee;
     border-left-width: 5px;
     -ms-border-radius: 3px;
     border-radius: 3px;
+    font-weight: bold;
 }
 
-.bs-callout-danger{
+.bs-callout-danger {
     border-left-color: #d9534f;
+    background-color: lightpink;
 }
