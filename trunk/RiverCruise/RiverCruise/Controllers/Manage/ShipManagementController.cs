@@ -24,5 +24,13 @@ namespace RiverCruise.Controllers.Manage
                 Comany = newShipCompanyViewModel
             });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddShip(NewShipViewModel model)
+        {
+            ModelState.AddModelError("", "Under construction");
+            return View(model);
+        }
     }
 }
