@@ -22,6 +22,17 @@ namespace Data
 
         public DbSet<Report> Reports { get; set; }
 
+        public IEnumerable<dynamic> GetUsers
+        {
+            get
+            {
+                using (var db = WebMatrix.Data.Database.Open("DefaultConnection"))
+                {
+                    return db.Query("SELECT * FROM UserProfile");
+                }
+            }
+        }
+
         public override int SaveChanges()
         {
             try

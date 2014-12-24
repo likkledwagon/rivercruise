@@ -6,70 +6,72 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container-fluid">
     <h2>@Model.Name</h2>
 
-<div class="container-fluid">
-    <h4>Detail</h4>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Ships):
-                @Model.Ships.Count()
-                <br/>
-                @Html.LabelFor(model => model.Reports):
-                @Model.Reports
-                <br />
-                @Html.LabelFor(model => model.ReportsPerShip):
-                @Model.ReportsPerShip
-                <br/>
-                @Html.LabelFor(model => model.ShipsVisited):
-                @Model.ShipsVisited
-                <br/>
-                @Html.LabelFor(model => model.PercentageShipsVisited):
-                @Model.PercentageShipsVisited
-            </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.NauticalCrewString):
-                @Model.NauticalCrewString
-                <br />
-                @Html.LabelFor(model => model.HotelStaffString):
-                @Model.HotelStaffString
-                <br />
-                @Html.LabelFor(model => model.TotalCrew):
-                @Model.TotalCrew
+        <h4>Detail</h4>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.Ships):
+                    @Model.Ships.Count()
+                    <br />
+                    @Html.LabelFor(model => model.Reports):
+                    @Model.Reports
+                    <br />
+                    @Html.LabelFor(model => model.ReportsPerShip):
+                    @Model.ReportsPerShip
+                    <br />
+                    @Html.LabelFor(model => model.ShipsVisited):
+                    @Model.ShipsVisited
+                    <br />
+                    @Html.LabelFor(model => model.PercentageShipsVisited):
+                    @Model.PercentageShipsVisited
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.NauticalCrewString):
+                    @Model.NauticalCrewString
+                    <br />
+                    @Html.LabelFor(model => model.HotelStaffString):
+                    @Model.HotelStaffString
+                    <br />
+                    @Html.LabelFor(model => model.TotalCrew):
+                    @Model.TotalCrew
+                </div>
             </div>
         </div>
-    </div>
-    <br/>
-    <h4>
-        @if (Roles.IsUserInRole(RoleHelper.Edit))
-        { 
-            <span class="btn-group pull-right">
-                <a href="@Url.Action("AddShip", "ShipManagement", new {CompanyId = Model.Id })" class="btn btn-default alert-success">
+        <br />
+        <h4>
+            @if (Roles.IsUserInRole(RoleHelper.Edit))
+            {
+                <span class="btn-group pull-right">
+                    <a href="@Url.Action("AddShip", "ShipManagement", new {CompanyId = Model.Id })" class="btn btn-default alert-success">
 
-                    <span class="glyphicon glyphicon glyphicon-plus"></span>
-                    Add New
-                </a>
+                        <span class="glyphicon glyphicon glyphicon-plus"></span>
+                        Add New
+                    </a>
+                </span>
+            }
+            <span class="h4content">
+                Ships
             </span>
-        }
-        <span class="h4content">
-            Ships
-        </span>
-    </h4> 
-    <div class="container-fluid">
-        <hr/>
-        @foreach (var ship in @Model.Ships)
-        {
-            <div class="clearfix">
-                <div class="pull-right">
-                    <label>Reports: </label>@ship.ShipReportViewModel.Count<br />
-                    <label>Last report:</label> @ship.ShipReportViewModel.LastReport
-                </div>
-                <div>
-                    @Html.ActionLink(ship.Name, "Detail", "Home", new { ship.Id }, null)
-                </div>
-            </div>
+        </h4>
+        <div class="container-fluid">
             <hr />
-        }
+            @foreach (var ship in @Model.Ships)
+            {
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <label>Reports: </label>@ship.Reports<br />
+                        <label>Last report:</label> @ship.LastReport
+                    </div>
+                    <div>
+                        @Html.ActionLink(ship.Name, "Detail", "Home", new { ship.Id }, null)
+                    </div>
+                </div>
+                <hr />
+            }
+        </div>
     </div>
 </div>
