@@ -13,6 +13,12 @@ h3 {
 h4 {
     color: #aaa;
 }
+/*nav li .dropdown */
+.dropdown a.dropdown-toggle
+{
+    border-left: 1px solid #ddd;
+    background-color: #eee;
+}
 
 .h4content {
     display: block;
@@ -57,6 +63,11 @@ body {
 }
 
 .bs-callout-danger {
-    border-left-color: #d9534f;
-    background-color: lightpink;
+    border-color: #d9534f;
+    background-color: #ffffe5;
+}
+
+.bs-callout-succes {
+    border-color: green;
+    background-color: #ffffe5;
 }

@@ -1,10 +1,5 @@
-﻿small
------
-- Companyshipsmodel
-
-big
+﻿big
 ---
-- Change password
 - Reports Migratie
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)

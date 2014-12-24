@@ -137,6 +137,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\RoleHelper.cs" />
+    <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\User.cs" />
     <Compile Include="Models\BasePagingModel.cs" />
     <Compile Include="Models\Company\CompaniesOverviewViewModel.cs" />
@@ -254,6 +255,7 @@
     <Content Include="Views\UserManagement\Add.cshtml" />
     <Content Include="Views\ShipManagement\AddShip.cshtml" />
     <Content Include="Views\Shared\Modal.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -272,10 +274,6 @@
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{c33cd072-406c-4698-9201-0b2433e2de5c}</Project>
       <Name>Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Helpers\Helpers.csproj">
-      <Project>{8c61f309-8bf0-4718-926f-f2f805541273}</Project>
-      <Name>Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

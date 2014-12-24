@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModels", "DataModels\DataModels.csproj", "{EF33C83A-B7BC-46E1-A33E-B5BB258C6A95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{8C61F309-8BF0-4718-926F-F2F805541273}"
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -39,10 +37,6 @@ Global
 		{EF33C83A-B7BC-46E1-A33E-B5BB258C6A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF33C83A-B7BC-46E1-A33E-B5BB258C6A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF33C83A-B7BC-46E1-A33E-B5BB258C6A95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C61F309-8BF0-4718-926F-F2F805541273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C61F309-8BF0-4718-926F-F2F805541273}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C61F309-8BF0-4718-926F-F2F805541273}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C61F309-8BF0-4718-926F-F2F805541273}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

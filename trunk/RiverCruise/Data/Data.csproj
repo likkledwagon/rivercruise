@@ -98,10 +98,6 @@
       <Project>{ef33c83a-b7bc-46e1-a33e-b5bb258c6a95}</Project>
       <Name>DataModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Helpers\Helpers.csproj">
-      <Project>{8c61f309-8bf0-4718-926f-f2f805541273}</Project>
-      <Name>Helpers</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
