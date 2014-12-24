@@ -12,14 +12,16 @@ namespace RiverCruise.Controllers.Manage
     [Authorize(Roles = "Edit")]
     public class UserManagementController : BaseController
     {
-        public ActionResult Index(int page = 0)
+        public ActionResult Index(int page = 0, string error = "")
         {
-            IEnumerable<dynamic> users;
-            string[] editusers = Roles.GetUsersInRole(RoleHelper.Edit);
-            using (var db = WebMatrix.Data.Database.Open("DefaultConnection"))
+            if (!string.IsNullOrEmpty(error))
             {
-                users = db.Query("SELECT * FROM UserProfile");
+                ModelState.AddModelError("", error);
             }
+
+            string[] editusers = Roles.GetUsersInRole(RoleHelper.Edit);
+            IEnumerable<dynamic> users = _db.GetUsers;
+
             return View(new UsersViewModel(users, editusers));
         }
 
@@ -83,6 +85,11 @@ namespace RiverCruise.Controllers.Manage
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string userName = "")
         {
+            if (WebSecurity.IsCurrentUser(userName))
+            {
+                return RedirectToAction("Index", new {error = "Cannot delete own user"});
+            }
+
             if (string.IsNullOrEmpty(userName) || !WebSecurity.UserExists(userName))
             { 
                 return RedirectToAction("Index");

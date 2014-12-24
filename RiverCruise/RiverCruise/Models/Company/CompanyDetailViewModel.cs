@@ -91,10 +91,24 @@ namespace RiverCruise.Models.Company
         }
     }
 
-    public class CompanyshipsModel : ShipViewModel
+    public class CompanyshipsModel
     {
-        public CompanyshipsModel(DataModels.Ship ship) : base(ship)
+        public CompanyshipsModel(DataModels.Ship ship)
         {
+            Name = ship.Name;
+            Id = ship.Id;
+            Reports = ship.Reports.Count;
+            LastReport = "-";
+            if (ship.Reports.Any())
+            {
+                LastReport = ship.Reports.OrderByDescending(x => x.Date).Select(y => y.Date).First().ToString("yyyy mmmm dd");
+            }
         }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+        public int Reports { get; set; }
+        public string LastReport { get; set; }
     }
 }

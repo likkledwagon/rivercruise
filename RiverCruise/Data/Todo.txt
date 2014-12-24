@@ -1,11 +1,10 @@
 ﻿small
 -----
-- cannot delete own user
-- ship detail
 - Companyshipsmodel
 
 big
 ---
+- Change password
 - Reports Migratie
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)

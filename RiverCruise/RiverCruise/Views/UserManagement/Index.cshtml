@@ -18,6 +18,13 @@
         Manage Users
     </h2>
     
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="bs-callout bs-callout-danger text-danger">
+            @Html.ValidationSummary()
+        </div>
+    }
+    
     <table class="table table-striped">
         <thead>
             <tr>

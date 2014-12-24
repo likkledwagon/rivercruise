@@ -13,6 +13,7 @@ namespace Data
         DbSet<Ship> Ships { get; set; }
         DbSet<Company> Companies { get; set; }
         DbSet<Report> Reports { get; set; }
+        IEnumerable<object> GetUsers { get; }
 
         void Dispose();
     }
