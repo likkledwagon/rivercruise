@@ -3,7 +3,6 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using System.Web.Security;
-using Helpers;
 using RiverCruise.Models.Account;
 using WebMatrix.WebData;
 
@@ -61,6 +60,56 @@ namespace RiverCruise.Controllers
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Login");
+        }
+
+        public ActionResult ChangePassword(bool passwordChangeSucces = false)
+        {
+            return View(new ChangePasswordViewModel()
+            {
+                PasswordChanged = passwordChangeSucces
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            if (model == null)
+            {
+                ModelState.AddModelError("", "Could not parse data, please try again");
+            }
+
+            if(ModelState.IsValid)
+            { 
+                var validationResult = model.Validate();
+
+                if (!validationResult.Valid)
+                {
+                    validationResult.ErrorMessages.ForEach(x => ModelState.AddModelError("", x));
+                }
+                else
+                {
+                    var membershipUser = Membership.GetUser(WebSecurity.CurrentUserName);
+                    try
+                    {
+                        if (membershipUser.ChangePassword(model.OldPassword, model.NewPassword))
+                        {
+                            return RedirectToAction("ChangePassword", "Account", new { passwordChangeSucces = true });
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Password change failed. Please re-enter your values and try again.");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        ModelState.AddModelError("", "An exception occurred: " + Server.HtmlEncode(e.Message) + ". Please re-enter your values and try again.");
+                    }
+                }
+            }
+
+            return View(model);
+
         }
     }
 }
