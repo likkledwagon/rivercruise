@@ -17,8 +17,12 @@ namespace RiverCruise.Models.Company
         {
             Name = company.Name;
             Ships = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Select(x => new CompanyshipsModel(x.Ship));
-            NauticalCrew = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Sum(x => x.Ship.NauticalCrew != null ? x.Ship.NauticalCrew.Value : 0);
-            HotelStaff = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Sum(x => x.Ship.HotelStaff != null ? x.Ship.HotelStaff.Value : 0);
+            NauticalCrew = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until))
+                .SelectMany(z => z.Ship.Crew).Where(c => c.From < DateTime.Now && c.Until >= DateTime.Now)
+                .Sum(x => x.NauticalCrew != null ? x.NauticalCrew.Value : 0);
+            HotelStaff = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until))
+                .SelectMany(z => z.Ship.Crew).Where(c => c.From < DateTime.Now && c.Until >= DateTime.Now)
+                .Sum(x => x.HotelStaff != null ? x.HotelStaff.Value : 0);
             Reports = company.Reports.Count;
             ShipsVisited = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Count(x => x.Ship.Reports.Any());
             Id = company.Id;

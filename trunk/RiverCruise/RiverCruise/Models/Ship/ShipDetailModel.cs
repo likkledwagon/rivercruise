@@ -15,8 +15,8 @@ namespace RiverCruise.Models.Ship
 
         public ShipDetailModel(DataModels.Ship ship)
         {
-            _nauticalCrew = ship.NauticalCrew.GetValueOrDefault();
-            _hotelStaff = ship.HotelStaff.GetValueOrDefault();
+            _nauticalCrew = ship.Crew.First(x => x.From < DateTime.Now && x.Until >= DateTime.Now).NauticalCrew.GetValueOrDefault();
+            _hotelStaff = ship.Crew.First(x => x.From < DateTime.Now && x.Until >= DateTime.Now).HotelStaff.GetValueOrDefault();
             CompanyName = ship.Ship2Company.First(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Company.Name;
             CompanyId = ship.Ship2Company.First(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Company.Id;
             Eni = ship.Eni;
