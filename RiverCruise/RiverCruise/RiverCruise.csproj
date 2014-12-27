@@ -133,6 +133,7 @@
     <Compile Include="Controllers\Manage\ShipManagementController.cs" />
     <Compile Include="Controllers\Manage\UserManagementController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Converters\ShipConverter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

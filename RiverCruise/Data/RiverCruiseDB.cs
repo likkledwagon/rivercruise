@@ -45,6 +45,11 @@ namespace Data
                 throw newException;
             }
         }
+
+        public new void Dispose()
+        {
+            base.Dispose();
+        }
     }
 
     public class FormattedDbEntityValidationException : Exception

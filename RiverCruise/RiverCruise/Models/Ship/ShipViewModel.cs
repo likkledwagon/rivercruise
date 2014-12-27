@@ -1,4 +1,7 @@
-﻿namespace RiverCruise.Models.Ship
+﻿using System;
+using System.Linq;
+
+namespace RiverCruise.Models.Ship
 {
     public class ShipViewModel
     {
@@ -7,9 +10,10 @@
             Name = ship.Name;
             Id = ship.Id;
             Region = ship.Region;
-            Company = ship.Company.Name;
-            CompanyId = ship.Company.Id;
-            ShipReportViewModel = new ShipReportViewModel(ship.Reports);
+            var company = ship.Ship2Company;
+            Company = ship.Ship2Company.First(x => (x.From < DateTime.Now) && (DateTime.Now <= x.Until)).Company.Name;
+            CompanyId = ship.Ship2Company.First(x => (x.From < DateTime.Now) && (DateTime.Now <= x.Until)).Company.Id;
+            ShipReportViewModel = new ShipReportViewModel(ship.Reports.ToList());
         }
 
         public string Region { get; set; }

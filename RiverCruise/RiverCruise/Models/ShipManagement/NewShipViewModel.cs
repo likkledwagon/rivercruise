@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc.Html;
 
 namespace RiverCruise.Models.ShipManagement
 {
@@ -9,8 +10,16 @@ namespace RiverCruise.Models.ShipManagement
         [Required]
         public string Name { get; set; }
         public string Eni { get; set; }
+
+        [Display(Name = "Nautical crew")]
         public int NauticalCrew { get; set; }
+
+        [Display(Name="Hotel staff")]
         public int HotselStaff { get; set; }
         public string Region { get; set; }
+
+        [StringLength(3)]
+        public string Flag { get; set; }
+        public bool ShipAdded { get; set; }
     }
 }
