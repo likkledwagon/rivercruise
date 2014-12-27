@@ -18,7 +18,6 @@ namespace DataModels
         [StringLength(3)]
         public string Flag { get; set; }
 
-        public int? NauticalCrew { get; set; }
-        public int? HotelStaff { get; set; }
+        public virtual Collection<Crew> Crew { get; set; }
     }
 }

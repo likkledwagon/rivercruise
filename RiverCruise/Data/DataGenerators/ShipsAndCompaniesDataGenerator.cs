@@ -15,7 +15,7 @@ namespace Data.DataGenerators
             
                 Company company;
                 company = new Company() {Name = "A\'ROSA"};
-                company.Ship2Company = new Collection<Ship2Company>() { new Ship2Company() { Company = company, From = DateTime.Now, Until = new DateTime(9999, 12, 31), Ship = new Ship() { Eni = "4801170", Flag = "GFR", HotelStaff = 44, Name = "A'ROSA BELLA", NauticalCrew = 6, Region = "Danube" } }};
+                company.Ship2Company = new Collection<Ship2Company>() { new Ship2Company() { Company = company, From = DateTime.Now, Until = new DateTime(9999, 12, 31), Ship = new Ship() { Eni = "4801170", Flag = "GFR", Crew = new Collection<Crew>() {new Crew(){HotelStaff = 44, NauticalCrew = 6, From = new DateTime(1900, 01, 01), Until = new DateTime(9999, 12, 31)}}, Name = "A'ROSA BELLA", Region = "Danube" } }};
                 context.Companies.Add(company);
                 context.SaveChanges();
         }
