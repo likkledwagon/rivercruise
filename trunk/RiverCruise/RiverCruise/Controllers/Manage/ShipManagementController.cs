@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using RiverCruise.Converters;
 using RiverCruise.Models.ShipManagement;
 
 namespace RiverCruise.Controllers.Manage
@@ -30,7 +31,23 @@ namespace RiverCruise.Controllers.Manage
         public ActionResult AddShip(NewShipViewModel model)
         {
             ModelState.AddModelError("", "Under construction");
-            return View(model);
+
+            //var dataShip = model.ToShipDataModel();
+            
+            //if(dataShip == null)
+            //{ 
+            //    ModelState.AddModelError("", "Something went wrong");
+            //    return View(model);
+            //}
+
+            //_db.Ships.Add(dataShip);
+            //_db.SaveChanges();
+
+            return View(new NewShipViewModel()
+            {
+                ShipAdded = true,
+                Comany = model.Comany
+            });
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Data.Migrations
         {
             if(!context.Ships.Any())
             {
-                //ShipsAndCompaniesDataGenerator.FillShipsAndCompanies(context);
+                ShipsAndCompaniesDataGenerator.FillShipsAndCompanies(context);
             }
         }
     }

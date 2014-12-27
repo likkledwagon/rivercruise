@@ -1,5 +1,7 @@
 ﻿big
 ---
+- Crew splitsen van schip (historiek)
+- Company detail (historiek)
 - Reports Migratie
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)

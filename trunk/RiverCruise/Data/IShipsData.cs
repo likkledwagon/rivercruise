@@ -8,13 +8,14 @@ using System.Data.Entity;
 
 namespace Data
 {
-    public interface IShipsData
+    public interface IShipsData : IDisposable
     {
         DbSet<Ship> Ships { get; set; }
         DbSet<Company> Companies { get; set; }
         DbSet<Report> Reports { get; set; }
         IEnumerable<object> GetUsers { get; }
 
-        void Dispose();
+        new void Dispose();
+        int SaveChanges();
     }
 }

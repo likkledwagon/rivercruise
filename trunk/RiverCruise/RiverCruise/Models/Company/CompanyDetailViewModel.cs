@@ -16,11 +16,11 @@ namespace RiverCruise.Models.Company
         public CompanyDetailViewModel(DataModels.Company company)
         {
             Name = company.Name;
-            Ships = company.Ships.Select(x => new CompanyshipsModel(x));
-            NauticalCrew = company.Ships.Sum(x => x.NauticalCrew != null ? x.NauticalCrew.Value : 0);
-            HotelStaff = company.Ships.Sum(x => x.HotelStaff != null ? x.HotelStaff.Value : 0);
+            Ships = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Select(x => new CompanyshipsModel(x.Ship));
+            NauticalCrew = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Sum(x => x.Ship.NauticalCrew != null ? x.Ship.NauticalCrew.Value : 0);
+            HotelStaff = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Sum(x => x.Ship.HotelStaff != null ? x.Ship.HotelStaff.Value : 0);
             Reports = company.Reports.Count;
-            ShipsVisited = company.Ships.Count(x => x.Reports.Any());
+            ShipsVisited = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Count(x => x.Ship.Reports.Any());
             Id = company.Id;
         }
 

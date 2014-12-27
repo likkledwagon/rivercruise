@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
@@ -16,8 +17,8 @@ namespace RiverCruise.Models.Ship
         {
             _nauticalCrew = ship.NauticalCrew.GetValueOrDefault();
             _hotelStaff = ship.HotelStaff.GetValueOrDefault();
-            CompanyName = ship.Company.Name;
-            CompanyId = ship.Company.Id;
+            CompanyName = ship.Ship2Company.First(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Company.Name;
+            CompanyId = ship.Ship2Company.First(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Company.Id;
             Eni = ship.Eni;
             Flag = ship.Flag;
             Region = ship.Region;
