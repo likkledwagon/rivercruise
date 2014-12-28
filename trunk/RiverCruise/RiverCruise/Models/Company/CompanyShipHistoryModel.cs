@@ -5,14 +5,23 @@ namespace RiverCruise.Models.Company
 {
     public class CompanyShipHistoryModel : CompanyshipsModel
     {
+        private DateTime _until;
+        private DateTime _from;
+
         public CompanyShipHistoryModel(Ship2Company shipCompany) : base(shipCompany)
         {
-            From = shipCompany.From;
-            Until = shipCompany.Until;
+            _from = shipCompany.From;
+            _until = shipCompany.Until;
         }
 
-        public DateTime Until { get; set; }
+        public string Until
+        {
+            get { return _until.ToString("yyyy mmmm dd"); }
+        }
 
-        public DateTime From { get; set; }
+        public string From
+        {
+            get { return _from.ToString("yyyy mmmm dd"); }
+        }
     }
 }
