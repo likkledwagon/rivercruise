@@ -143,6 +143,7 @@
     <Compile Include="Models\BasePagingModel.cs" />
     <Compile Include="Models\Company\CompaniesOverviewViewModel.cs" />
     <Compile Include="Models\Company\CompanyDetailViewModel.cs" />
+    <Compile Include="Models\Company\CompanyHistoryModel.cs" />
     <Compile Include="Models\Report\ReportsViewModel.cs" />
     <Compile Include="Models\Shared\ModalModel.cs" />
     <Compile Include="Models\ShipManagement\NewShipCompanyViewModel.cs" />
@@ -257,6 +258,8 @@
     <Content Include="Views\ShipManagement\AddShip.cshtml" />
     <Content Include="Views\Shared\Modal.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Company\_companyHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

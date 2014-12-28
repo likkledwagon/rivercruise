@@ -1,0 +1,18 @@
+﻿@model RiverCruise.Models.Company.CompanyHistoryModel
+<div class="pagerTarget">
+
+    @Html.Partial("_Paging", Model)
+
+    <div>
+        @foreach (var ship in Model.Ships)
+        {
+            <hr />
+            <div class="container-fluid">
+                <h4>@Html.ActionLink(ship.Name, "Detail", "Home", new { ship.Id }, null)</h4>
+            </div>
+        }
+    </div>
+
+    @Html.Partial("_Paging", Model)
+
+</div>

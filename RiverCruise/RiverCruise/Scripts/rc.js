@@ -22,10 +22,9 @@
         $form.submit();
     };
 
-    var getPage = function() {
-        var $a = $(this);
+    var getPage = function(href) {
         var options = {
-            url: $a.attr("href"),
+            url: href,
             type: "get"
         };
 
@@ -37,7 +36,11 @@
 
     $("input[data-otf-autocomplete]").each(createAutoComplete);
 
-    $(".pageContent").on("click", ".pagination a", getPage);
+    $(".pageContent").on("click", ".pagination a", function (event) {
+        var senderhref = $(this).attr("href");
+        event.preventDefault();
+        getPage(senderhref);
+    });
 
     $("form.triggerModal").submit(function (e) {
         e.preventDefault();

@@ -10,6 +10,9 @@ namespace RiverCruise.Models
 {
     public class BasePagingModel
     {
+        private string _action = "Index";
+        private string _targetDiv = "div#pagerTarget";
+
         [Range(1, int.MaxValue, ErrorMessage = "Page out of range")]
         public int CurrentPage { get; set; }
         public double Pages { get; set; }
@@ -27,5 +30,17 @@ namespace RiverCruise.Models
 
         public int TotalItems { get; set; }
         public string SearchText { get; set; }
+
+        public string Action
+        {
+            get { return _action; }
+            set { _action = value; }
+        }
+
+        public string TargetDiv
+        {
+            get { return _targetDiv; }
+            set { _targetDiv = value; }
+        }
     }
 }
