@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using DataModels;
-using RiverCruise.Models.Ship;
 
 namespace RiverCruise.Models.Company
 {
@@ -16,7 +13,7 @@ namespace RiverCruise.Models.Company
         public CompanyDetailViewModel(DataModels.Company company)
         {
             Name = company.Name;
-            Ships = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Select(x => new CompanyshipsModel(x.Ship));
+            Ships = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Select(x => new CompanyshipsModel(x));
             NauticalCrew = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until))
                 .SelectMany(z => z.Ship.Crew).Where(c => c.From < DateTime.Now && c.Until >= DateTime.Now)
                 .Sum(x => x.NauticalCrew != null ? x.NauticalCrew.Value : 0);
@@ -93,32 +90,5 @@ namespace RiverCruise.Models.Company
                 return "0";
             }
         }
-    }
-
-    public class CompanyshipsModel
-    {
-        public CompanyshipsModel(DataModels.Ship ship)
-        {
-            Name = ship.Name;
-            Id = ship.Id;
-            Reports = ship.Reports.Count;
-            LastReport = "-";
-            if (ship.Reports.Any())
-            {
-                LastReport = ship.Reports.OrderByDescending(x => x.Date).Select(y => y.Date).First().ToString("yyyy mmmm dd");
-            }
-        }
-
-        public CompanyshipsModel()
-        {
-            
-        }
-
-
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-        public int Reports { get; set; }
-        public string LastReport { get; set; }
     }
 }

@@ -59,11 +59,6 @@ namespace RiverCruise.Controllers
                 .Where(z => z.Until <= DateTime.Now)
                 .Select(a => a);
 
-            if (Request.IsAjaxRequest())
-            {
-                var a = 1;
-            }
-
             var model = new CompanyHistoryModel(query, page, totalItems);
             return PartialView("~/Views/Company/_companyHistory.cshtml", model);
         }

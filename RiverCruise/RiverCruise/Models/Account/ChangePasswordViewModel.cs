@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using System.Web.Security;
-using WebMatrix.WebData;
+﻿using System.ComponentModel.DataAnnotations;
+using ValidationResult = RiverCruise.Models.Shared.ValidationResult;
 
 namespace RiverCruise.Models.Account
 {
@@ -33,22 +30,10 @@ namespace RiverCruise.Models.Account
         [Required]
         public string NewPassword { get; set; }
 
-        [Display(Name = "Old password")]
+        [Display(Name = "Current password")]
         [Required]
         public string OldPassword { get; set; }
 
         public bool PasswordChanged { get; set; }
-    }
-
-    public class ValidationResult
-    {
-        public bool Valid { get; set; }
-
-        public List<string> ErrorMessages { get; set; }
-
-        public ValidationResult()
-        {
-            ErrorMessages = new List<string>();
-        }
     }
 }

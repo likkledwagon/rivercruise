@@ -1,6 +1,8 @@
 ﻿big
 ---
-- Company detail (historiek)
+- company historiek van-tot formatting
+- company historiek search?
+- ship historiek (crew)
 - ships + companies migratie
 - Reports Migratie
 - Ship detail (paging : reports)
