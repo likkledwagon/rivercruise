@@ -144,8 +144,11 @@
     <Compile Include="Models\Company\CompaniesOverviewViewModel.cs" />
     <Compile Include="Models\Company\CompanyDetailViewModel.cs" />
     <Compile Include="Models\Company\CompanyHistoryModel.cs" />
+    <Compile Include="Models\Company\CompanyShipHistoryModel.cs" />
+    <Compile Include="Models\Company\CompanyshipsModel.cs" />
     <Compile Include="Models\Report\ReportsViewModel.cs" />
     <Compile Include="Models\Shared\ModalModel.cs" />
+    <Compile Include="Models\Shared\ValidationResult.cs" />
     <Compile Include="Models\ShipManagement\NewShipCompanyViewModel.cs" />
     <Compile Include="Models\ShipManagement\NewShipViewModel.cs" />
     <Compile Include="Models\Ship\ShipDetailModel.cs" />

@@ -9,7 +9,7 @@ namespace RiverCruise.Models.Company
     {
         public CompanyHistoryModel(IEnumerable<Ship2Company> ship2Company, int page, int totalItems)
         {
-            Ships = ship2Company.OrderByDescending(z => z.From).Skip((page - 1) * ItemsPerPage).Take(ItemsPerPage).Select(x => new CompanyshipsModel(x.Ship))
+            Ships = ship2Company.OrderByDescending(z => z.From).Skip((page - 1) * ItemsPerPage).Take(ItemsPerPage).Select(x => new CompanyShipHistoryModel(x))
                 .ToList();
 
             Action = "CompanyHistory";
@@ -17,6 +17,6 @@ namespace RiverCruise.Models.Company
             Initialize(page, totalItems, "Company");
         }
 
-        public List<CompanyshipsModel> Ships { get; set; }
+        public List<CompanyShipHistoryModel> Ships { get; set; }
     }
 }
