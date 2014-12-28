@@ -1,6 +1,5 @@
 ﻿big
 ---
-- company historiek van-tot formatting
 - company historiek search?
 - ship historiek (crew)
 - ships + companies migratie
