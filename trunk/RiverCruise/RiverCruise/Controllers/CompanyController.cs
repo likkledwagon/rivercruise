@@ -47,5 +47,25 @@ namespace RiverCruise.Controllers
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult CompanyHistory(int id, int page = 1)
+        {
+            int totalItems = _db.Companies.Where(x => x.Id == id)
+                .SelectMany(y => y.Ship2Company).Count(z => z.Until <= DateTime.Now);
+
+            var query = _db.Companies.Where(x => x.Id == id)
+                .SelectMany(y => y.Ship2Company)
+                .Where(z => z.Until <= DateTime.Now)
+                .Select(a => a);
+
+            if (Request.IsAjaxRequest())
+            {
+                var a = 1;
+            }
+
+            var model = new CompanyHistoryModel(query, page, totalItems);
+            return PartialView("~/Views/Company/_companyHistory.cshtml", model);
+        }
     }
 }
