@@ -149,6 +149,7 @@
     <Compile Include="Models\Report\ReportsViewModel.cs" />
     <Compile Include="Models\Shared\ModalModel.cs" />
     <Compile Include="Models\Shared\ValidationResult.cs" />
+    <Compile Include="Models\ShipManagement\EditShipViewModel.cs" />
     <Compile Include="Models\ShipManagement\NewShipCompanyViewModel.cs" />
     <Compile Include="Models\ShipManagement\NewShipViewModel.cs" />
     <Compile Include="Models\Ship\ShipDetailModel.cs" />
