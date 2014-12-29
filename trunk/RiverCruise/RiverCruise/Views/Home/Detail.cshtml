@@ -1,4 +1,5 @@
-﻿@model RiverCruise.Models.Ship.ShipDetailModel
+﻿@using RiverCruise.Helpers
+@model RiverCruise.Models.Ship.ShipDetailModel
 
 @{
     ViewBag.Title = "Detail";
@@ -8,16 +9,19 @@
 <div class="container-fluid">
     
     <!-- edit menu -->
-    <div class="pull-right">
-        @using (Html.BeginForm("Delete", "ShipManagement", FormMethod.Post, new { @Class = "triggerModal pull-right", data_rc_ModalAction = "DeleteGet", data_rc_ModalController = "ShipManagement" }))
-        {
-            @Html.AntiForgeryToken()
-            <input type="hidden" value="@Model.Name" name="name" id="name"/>
-            <input type="hidden" value="@Model.ShipId" name="id" id="id" />
-            <button type="submit" class="btn btn-danger margin"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-        }
-        <a class="btn btn-warning margin" href="@Url.Action("Edit", "ShipManagement", new {Id = Model.ShipId }, null)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-    </div><!-- edit menu -->
+    @if (Roles.IsUserInRole(RoleHelper.Edit)) 
+    { 
+        <div class="pull-right">
+            @using (Html.BeginForm("Delete", "ShipManagement", FormMethod.Post, new { @Class = "triggerModal pull-right", data_rc_ModalAction = "DeleteGet", data_rc_ModalController = "ShipManagement" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@Model.Name" name="name" id="name"/>
+                <input type="hidden" value="@Model.ShipId" name="id" id="id" />
+                <button type="submit" class="btn btn-danger margin"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+            }
+            <a class="btn btn-warning margin" href="@Url.Action("Edit", "ShipManagement", new {Id = Model.ShipId }, null)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+        </div>
+    }<!-- edit menu -->
 
     <span class="clearfix"></span>
     

@@ -20,6 +20,6 @@ namespace RiverCruise.Models.ShipManagement
 
         [StringLength(3)]
         public string Flag { get; set; }
-        public bool ShipAdded { get; set; }
+        public bool ShipModified { get; set; }
     }
 }

@@ -45,7 +45,7 @@ namespace RiverCruise.Controllers.Manage
 
             return View(new NewShipViewModel()
             {
-                ShipAdded = true,
+                ShipModified = true,
                 Comany = model.Comany
             });
         }
@@ -81,7 +81,7 @@ namespace RiverCruise.Controllers.Manage
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, bool shipEdited = false)
         {
             var queryResult = _db.Ships.Find(id);
             if (queryResult == null)
@@ -89,7 +89,14 @@ namespace RiverCruise.Controllers.Manage
                 return HttpNotFound();
             }
 
-            return View(new ShipDetailModel(queryResult));
+            return View(new EditShipViewModel(queryResult, shipEdited));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditShipViewModel model)
+        {
+            return RedirectToAction("Edit", new {model.Id, shipEdited = true});
         }
     }
 }
