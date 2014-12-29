@@ -128,7 +128,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BaseManagementController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
-    <Compile Include="Controllers\EditShipsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Manage\ShipManagementController.cs" />
     <Compile Include="Controllers\Manage\UserManagementController.cs" />
@@ -250,7 +249,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Company\index.cshtml" />
-    <Content Include="Views\EditShips\Index.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Company\Detail.cshtml" />

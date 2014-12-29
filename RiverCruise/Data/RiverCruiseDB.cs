@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Web.Mvc;
+using Data.ProxyModel.Ship;
 using DataModels;
 
 namespace Data
@@ -59,49 +60,23 @@ namespace Data
             SaveChanges();
         }
 
+        public void EditShipData(EditShipProxyModel dataShip)
+        {
+            var ship = Ships.Find(dataShip.Id);
+            ship.Name = dataShip.Name;
+            ship.Eni = dataShip.Eni;
+            ship.Flag = dataShip.Flag;
+            ship.Region = dataShip.Region;
+            var crew = ship.Crew.Single(x => x.From < DateTime.Now && x.Until >= DateTime.Now);
+            crew.HotelStaff = dataShip.HotelStaff;
+            crew.NauticalCrew = dataShip.NauticalCrew;
+
+            SaveChanges();
+        }
+
         public new void Dispose()
         {
             base.Dispose();
-        }
-    }
-
-    public class FormattedDbEntityValidationException : Exception
-    {
-        public FormattedDbEntityValidationException(DbEntityValidationException innerException) :
-            base(null, innerException)
-        {
-        }
-
-        public override string Message
-        {
-            get
-            {
-                var innerException = InnerException as DbEntityValidationException;
-                if (innerException != null)
-                {
-                    StringBuilder sb = new StringBuilder();
-
-                    sb.AppendLine();
-                    sb.AppendLine();
-                    foreach (var eve in innerException.EntityValidationErrors)
-                    {
-                        sb.AppendLine(string.Format("- Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().FullName, eve.Entry.State));
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            sb.AppendLine(string.Format("-- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
-                                ve.PropertyName,
-                                eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
-                                ve.ErrorMessage));
-                        }
-                    }
-                    sb.AppendLine();
-
-                    return sb.ToString();
-                }
-
-                return base.Message;
-            }
         }
     }
 }

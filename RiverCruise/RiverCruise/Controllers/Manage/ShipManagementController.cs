@@ -35,7 +35,7 @@ namespace RiverCruise.Controllers.Manage
         [ValidateAntiForgeryToken]
         public ActionResult AddShip(NewShipViewModel model)
         {
-            var dataShip = model.ToShipDataModel();
+            var dataShip = model.ToNewShipDataModel();
             
             if(dataShip == null)
             { 
@@ -96,6 +96,8 @@ namespace RiverCruise.Controllers.Manage
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditShipViewModel model)
         {
+            var dataShip = model.ToEditShipDataModel();
+            _db.EditShipData(dataShip);
             return RedirectToAction("Edit", new {model.Id, shipEdited = true});
         }
     }

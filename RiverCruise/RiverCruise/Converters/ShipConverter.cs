@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Data;
+using Data.ProxyModel.Ship;
 using DataModels;
 using RiverCruise.Models.ShipManagement;
 
@@ -9,7 +10,7 @@ namespace RiverCruise.Converters
 {
     public static class ShipConverter
     {
-        public static Ship2Company ToShipDataModel(this NewShipViewModel newShipViewModel)
+        public static Ship2Company ToNewShipDataModel(this NewShipViewModel newShipViewModel)
         {
             try
             {
@@ -56,6 +57,20 @@ namespace RiverCruise.Converters
             {
                 return null;
             }           
+        }
+
+        public static EditShipProxyModel ToEditShipDataModel(this EditShipViewModel editShipViewModel)
+        {
+            return new EditShipProxyModel()
+            {
+                Id = editShipViewModel.Id,
+                Name = editShipViewModel.Name,
+                Eni = editShipViewModel.Eni,
+                Flag = editShipViewModel.Flag,
+                Region = editShipViewModel.Region,
+                NauticalCrew = editShipViewModel.NauticalCrew,
+                HotelStaff = editShipViewModel.HotselStaff
+            };
         }
     }
 }
