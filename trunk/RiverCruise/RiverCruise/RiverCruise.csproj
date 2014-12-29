@@ -265,6 +265,7 @@
     <Content Include="Views\Company\_companyHistory.cshtml" />
     <Content Include="Views\Home\_shipHistory.cshtml" />
     <Content Include="Views\ShipManagement\Edit.cshtml" />
+    <Content Include="Views\Shared\WhatsNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

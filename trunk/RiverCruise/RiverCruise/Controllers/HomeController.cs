@@ -21,6 +21,11 @@ namespace RiverCruise.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult WhatsNew()
+        {
+            return View("WhatsNew");
+        }
+
         public ActionResult Index(string searchText, int page = 1)
         {
             if (page < 1)
