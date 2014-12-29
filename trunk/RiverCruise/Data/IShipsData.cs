@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data.ProxyModel.Ship;
 using DataModels;
 using System.Data.Entity;
 
@@ -18,5 +19,6 @@ namespace Data
         new void Dispose();
         int SaveChanges();
         void DeleteShip(int id);
+        void EditShipData(EditShipProxyModel dataShip);
     }
 }

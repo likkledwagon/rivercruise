@@ -13,6 +13,7 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => Model.Comany.Name)
         @Html.HiddenFor(model => Model.Comany.Id)
+        @Html.HiddenFor(model => model.Id)
 
         if (!ViewData.ModelState.IsValid)
         {
