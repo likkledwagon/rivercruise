@@ -11,9 +11,7 @@
 Bewerken gegevens
 -----------------
 - Company add
-- Ship add
 - Report add
 
 - Company edit
-- Ship edit
 - Report edit
