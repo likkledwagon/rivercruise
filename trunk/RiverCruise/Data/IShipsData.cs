@@ -17,5 +17,6 @@ namespace Data
 
         new void Dispose();
         int SaveChanges();
+        void DeleteShip(int id);
     }
 }

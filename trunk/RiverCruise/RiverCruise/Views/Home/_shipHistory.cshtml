@@ -1,0 +1,46 @@
+﻿@model RiverCruise.Models.Ship.ShipHistoryModel
+<div class="pagerTarget">
+    
+    @if (Model.Crew.Any())
+    {
+
+        @Html.Partial("_Paging", Model)
+
+        <div>
+            @foreach (var crew in Model.Crew)
+            {
+                <hr />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9">
+                            @Html.LabelFor(model => crew.HotelStaff)
+                            @crew.HotelStaff
+                            <br/>
+                            @Html.LabelFor(model => crew.NauticalCrew)
+                            @crew.NauticalCrew
+                            <br/>
+                            @Html.LabelFor(model => crew.TotalCrew)
+                            @crew.TotalCrew
+                        </div>
+                        <div class="col-md-3">@crew.From - @crew.Until</div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @Html.Partial("_Paging", Model)
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="bs-callout bs-callout-warning text-warning">
+                    <ul>
+                        <li>No history available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

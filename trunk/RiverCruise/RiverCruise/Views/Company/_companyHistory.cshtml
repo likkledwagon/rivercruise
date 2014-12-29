@@ -1,21 +1,35 @@
 ﻿@model RiverCruise.Models.Company.CompanyHistoryModel
 <div class="pagerTarget">
 
-    @Html.Partial("_Paging", Model)
+    @if (Model.Ships.Any())
+    {
+        @Html.Partial("_Paging", Model)
 
-    <div>
-        @foreach (var ship in Model.Ships)
-        {
-            <hr />
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-9"><h4>@Html.ActionLink(ship.Name, "Detail", "Home", new { ship.Id }, null)</h4></div>
-                    <div class="col-md-3">@ship.From - @ship.Until</div>
+        <div>
+            @foreach (var ship in Model.Ships)
+            {
+                <hr />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9"><h4>@Html.ActionLink(ship.Name, "Detail", "Home", new {ship.Id}, null)</h4></div>
+                        <div class="col-md-3">@ship.From - @ship.Until</div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @Html.Partial("_Paging", Model)
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="bs-callout bs-callout-warning text-warning">
+                    <ul>
+                        <li>No history available</li>
+                    </ul>
                 </div>
             </div>
-        }
-    </div>
-
-    @Html.Partial("_Paging", Model)
-
+        </div>
+    }
 </div>

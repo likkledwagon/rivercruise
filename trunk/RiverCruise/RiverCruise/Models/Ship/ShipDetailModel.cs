@@ -9,12 +9,14 @@ namespace RiverCruise.Models.Ship
 {
     public class ShipDetailModel
     {
+        public bool DeleteFailed { get; set; }
         private readonly int _nauticalCrew;
         private readonly int _hotelStaff;
         private const string Unknown = "?";
 
-        public ShipDetailModel(DataModels.Ship ship)
+        public ShipDetailModel(DataModels.Ship ship, bool deleteFailed = false)
         {
+            DeleteFailed = deleteFailed;
             _nauticalCrew = ship.Crew.First(x => x.From < DateTime.Now && x.Until >= DateTime.Now).NauticalCrew.GetValueOrDefault();
             _hotelStaff = ship.Crew.First(x => x.From < DateTime.Now && x.Until >= DateTime.Now).HotelStaff.GetValueOrDefault();
             CompanyName = ship.Ship2Company.First(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Company.Name;
@@ -23,9 +25,12 @@ namespace RiverCruise.Models.Ship
             Flag = ship.Flag;
             Region = ship.Region;
             Name = ship.Name;
+            ShipId = ship.Id;
 
             Reports = ship.Reports.Select(x => new ShipDetailReportViewModel(x)).ToList();
         }
+
+        public int ShipId { get; set; }
 
         public string Name { get; set; }
 

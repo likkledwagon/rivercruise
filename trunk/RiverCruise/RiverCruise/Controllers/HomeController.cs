@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Cryptography.X509Certificates;
 using Data;
 using DataModels;
@@ -11,7 +12,6 @@ namespace RiverCruise.Controllers
 {
     public class HomeController : BaseController
     {
-        [Authorize]
         public ActionResult AutoComplete(string term)
         {
             var model = _db.Ships.
@@ -21,7 +21,6 @@ namespace RiverCruise.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
         public ActionResult Index(string searchText, int page = 1)
         {
             if (page < 1)
@@ -40,8 +39,7 @@ namespace RiverCruise.Controllers
             return View(shipsModel);
         }
 
-        [Authorize]
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int id, bool deleteFailed = false)
         {
             var queryResult = _db.Ships.Find(id);
             if (queryResult == null)
@@ -49,7 +47,22 @@ namespace RiverCruise.Controllers
                 return HttpNotFound();
             }
 
-            return View(new ShipDetailModel(queryResult));
+            return View(new ShipDetailModel(queryResult, deleteFailed));
+        }
+
+        public ActionResult ShipHistory(int id, int page = 1)
+        {
+            var query = _db.Ships.Find(id);
+            if (query == null)
+            {
+                return HttpNotFound();
+            }
+
+            var totalItems = _db.Ships.Find(id).Crew.Count(x => x.Until < DateTime.Now);
+
+            var model = new ShipHistoryModel(query.Crew.Where(x => x.Until < DateTime.Now), page, totalItems);
+
+            return PartialView("~/Views/home/_shipHistory.cshtml", model);
         }
     }
 }

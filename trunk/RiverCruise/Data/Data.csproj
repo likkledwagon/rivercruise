@@ -102,6 +102,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="River Cruise Ships Europe 2012.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201412221351478_Initial.resx">

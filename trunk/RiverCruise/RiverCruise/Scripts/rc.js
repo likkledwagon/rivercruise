@@ -29,7 +29,7 @@
         };
 
         $.ajax(options).done(function(data) {
-            var target = "div.pagerTarget";
+            var target = "div#pagerTarget";
             $(target).replaceWith(data);
         });
     };
