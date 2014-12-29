@@ -7,6 +7,30 @@
 }
 
 <div class="container-fluid">
+    @if (Roles.IsUserInRole(RoleHelper.Edit))
+    {
+        <div class="pull-left">
+
+            <div class="dropdown margin">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    Manage
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation">
+                        <a href="@Url.Action("AddShip", "ShipManagement", new {CompanyId = Model.Id })" class="">
+
+                            <span class="glyphicon glyphicon glyphicon-plus"></span>
+                            Add Ship
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <span class="clearfix"></span>
+    }
+
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#" id="DetailLink">Detail</a></li>
         <li role="presentation"><a href="#" id="historyLink">History</a></li>
@@ -49,16 +73,6 @@
             </div>
             <br />
             <h4>
-                @if (Roles.IsUserInRole(RoleHelper.Edit))
-                {
-                    <span class="btn-group pull-right">
-                        <a href="@Url.Action("AddShip", "ShipManagement", new {CompanyId = Model.Id })" class="btn btn-default alert-success">
-
-                            <span class="glyphicon glyphicon glyphicon-plus"></span>
-                            Add Ship
-                        </a>
-                    </span>
-                }
                 <span class="h4content">
                     Ships
                 </span>
