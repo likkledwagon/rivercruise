@@ -13,7 +13,7 @@ namespace RiverCruise.Models.Company
         public CompanyDetailViewModel(DataModels.Company company)
         {
             Name = company.Name;
-            Ships = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Select(x => new CompanyshipsModel(x));
+            Ships = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).OrderBy(o => o.Ship.Name).Select(x => new CompanyshipsModel(x));
             NauticalCrew = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until))
                 .SelectMany(z => z.Ship.Crew).Where(c => c.From < DateTime.Now && c.Until >= DateTime.Now)
                 .Sum(x => x.NauticalCrew != null ? x.NauticalCrew.Value : 0);
