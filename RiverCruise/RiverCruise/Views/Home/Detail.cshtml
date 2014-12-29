@@ -6,32 +6,104 @@
 }
 
 <div class="container-fluid">
-    <h2>@Model.Name</h2>
+    
+    <!-- edit menu -->
+    <div class="pull-right">
+        @using (Html.BeginForm("Delete", "ShipManagement", FormMethod.Post, new { @Class = "triggerModal pull-right", data_rc_ModalAction = "DeleteGet", data_rc_ModalController = "ShipManagement" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" value="@Model.Name" name="name" id="name"/>
+            <input type="hidden" value="@Model.ShipId" name="id" id="id" />
+            <button type="submit" class="btn btn-danger margin"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+        }
+        <a class="btn btn-warning margin" href="@Url.Action("Edit", "ShipManagement", new {Id = Model.ShipId }, null)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+    </div><!-- edit menu -->
 
-    <div class="container-fluid">
-        <div>
-            <h4>Detail</h4>
-            <div class="container-fluid">
-
-                Company : <strong>@Html.ActionLink(Model.CompanyName, "Detail", "Company", new { Id = Model.CompanyId }, null) </strong><br />
-                ENI : <strong>@(Model.Eni)</strong><br />
-                Flag : <strong>@Model.Flag</strong><br />
-                Region : <strong>@Model.Region</strong><br />
-                Nautical crew : <strong>@Model.NauticalCrew</strong><br />
-                Hotel staff : <strong>@Model.HotelStaff</strong><br />
-                Total crew : <strong>@(Model.TotalCrew)</strong>
+    <span class="clearfix"></span>
+    
+    <!-- tabs -->
+    <div>
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#" id="DetailLink">Detail</a></li>
+            <li role="presentation"><a href="#" id="historyLink">Crew History</a></li>
+        </ul>
+    </div><!-- tabs -->
+    
+    <div id="DetailTabContent">
+        @if (Model.DeleteFailed)
+        {
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="bs-callout bs-callout-danger text-danger">
+                        <ul>
+                            <li>Something went wrong, please try again.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <br />
-            <h4>Reports</h4>
-            <div class="container-fluid">
+        }
 
-                @foreach (var report in Model.Reports)
-                {
-                    <span class="pull-right"><em>@report.Date</em></span><strong>@report.Ref</strong><br />
-                    @report.Remarks
-                    <hr />
-                }
+        <h2>@Model.Name</h2>
+
+        <div class="container-fluid">
+            <div>
+                <h4>Detail</h4>
+                <div class="container-fluid">
+
+                    Company : <strong>@Html.ActionLink(Model.CompanyName, "Detail", "Company", new { Id = Model.CompanyId }, null) </strong><br />
+                    ENI : <strong>@(Model.Eni)</strong><br />
+                    Flag : <strong>@Model.Flag</strong><br />
+                    Region : <strong>@Model.Region</strong><br />
+                    Nautical crew : <strong>@Model.NauticalCrew</strong><br />
+                    Hotel staff : <strong>@Model.HotelStaff</strong><br />
+                    Total crew : <strong>@(Model.TotalCrew)</strong>
+                </div>
+                <br />
+                <h4>Reports</h4>
+                <div class="container-fluid">
+
+                    @foreach (var report in Model.Reports)
+                    {
+                        <span class="pull-right"><em>@report.Date</em></span><strong>@report.Ref</strong><br />
+                        @report.Remarks
+                        <hr />
+                    }
+                </div>
             </div>
         </div>
     </div>
+    
+
+    <div id="historyPlaceHolder"></div>
 </div>
+<script>
+    $("#historyLink").click(function (e) {
+        e.preventDefault();
+
+        $("#DetailTabContent").hide();
+        $("#historyPlaceHolder").show();
+        $("#historyLink").parent().parent().children().removeClass("active");
+        $("#historyLink").parent().addClass("active");
+
+        var options = {
+            url: "@Url.Action("ShipHistory", "Home", new { Id = Model.ShipId}, null)",
+            type: "get"
+        };
+
+        $.ajax(options).done(function (data) {
+            var target = "#historyPlaceHolder";
+            $(target).html(data);
+        });
+
+        return null;
+    });
+
+    $("#DetailLink").click(function (e) {
+        e.preventDefault();
+        $("#historyPlaceHolder").hide();
+        $("#DetailTabContent").show();
+        $("#DetailLink").parent().parent().children().removeClass("active");
+        $("#DetailLink").parent().addClass("active");
+        return null;
+    });
+</script>

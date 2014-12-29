@@ -1,11 +1,12 @@
 ﻿big
 ---
+- test paging history
 - company historiek search?
-- ship historiek (crew)
-- ships + companies migratie
-- Reports Migratie
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)
+
+- Reports Migratie
+
 
 Bewerken gegevens
 -----------------

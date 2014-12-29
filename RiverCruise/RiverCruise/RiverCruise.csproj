@@ -153,6 +153,7 @@
     <Compile Include="Models\ShipManagement\NewShipViewModel.cs" />
     <Compile Include="Models\Ship\ShipDetailModel.cs" />
     <Compile Include="Models\Ship\ShipDetailReportViewModel.cs" />
+    <Compile Include="Models\Ship\ShipHistoryModel.cs" />
     <Compile Include="Models\Ship\ShipReportViewModel.cs" />
     <Compile Include="Models\Ship\ShipsOverviewViewModel.cs" />
     <Compile Include="Models\Ship\ShipViewModel.cs" />
@@ -263,6 +264,8 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Company\_companyHistory.cshtml" />
+    <Content Include="Views\Home\_shipHistory.cshtml" />
+    <Content Include="Views\ShipManagement\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,7 @@ namespace RiverCruise.Models.Company
         public CompanyshipsModel(Ship2Company shipCompany)
         {
             Name = shipCompany.Ship.Name;
-            Id = shipCompany.Id;
+            Id = shipCompany.Ship.Id;
             Reports = shipCompany.Ship.Reports.Count;
             LastReport = "-";
             if (shipCompany.Ship.Reports.Any())

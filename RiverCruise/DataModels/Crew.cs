@@ -9,5 +9,6 @@ namespace DataModels
         public int? HotelStaff { get; set; }
         public DateTime From { get; set; }
         public DateTime Until { get; set; }
+        public virtual Ship Ship { get; set; }
     }
 }

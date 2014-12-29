@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Data;
-using RiverCruise.Models;
 using RiverCruise.Models.Company;
 
 namespace RiverCruise.Controllers

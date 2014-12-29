@@ -1,6 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
 using RiverCruise.Converters;
+using RiverCruise.Models.Shared;
+using RiverCruise.Models.Ship;
 using RiverCruise.Models.ShipManagement;
 
 namespace RiverCruise.Controllers.Manage
@@ -30,24 +35,61 @@ namespace RiverCruise.Controllers.Manage
         [ValidateAntiForgeryToken]
         public ActionResult AddShip(NewShipViewModel model)
         {
-            ModelState.AddModelError("", "Under construction");
-
-            //var dataShip = model.ToShipDataModel();
+            var dataShip = model.ToShipDataModel();
             
-            //if(dataShip == null)
-            //{ 
-            //    ModelState.AddModelError("", "Something went wrong");
-            //    return View(model);
-            //}
-
-            //_db.Ships.Add(dataShip);
-            //_db.SaveChanges();
+            if(dataShip == null)
+            { 
+                ModelState.AddModelError("", "Something went wrong");
+                return View(model);
+            }
 
             return View(new NewShipViewModel()
             {
                 ShipAdded = true,
                 Comany = model.Comany
             });
+        }
+
+        [HttpGet]
+        public ActionResult DeleteGet(int id, string name)
+        {
+            var modalModel = new ModalModel()
+            {
+                Action = "Delete",
+                Arguments = new Dictionary<string, object>() { { "id", id } },
+                Body = "Are you sure you want to delete " + name + "?",
+                Controller = "ShipManagement",
+                Title = "Confirm"
+            };
+
+            return PartialView("Modal", modalModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _db.DeleteShip(id);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Detail", "Home", new {Id = id, actionFailed = true});
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var queryResult = _db.Ships.Find(id);
+            if (queryResult == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new ShipDetailModel(queryResult));
         }
     }
 }

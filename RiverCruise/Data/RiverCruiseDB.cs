@@ -22,6 +22,10 @@ namespace Data
 
         public DbSet<Report> Reports { get; set; }
 
+        public DbSet<Crew> Crews { get; set; }
+
+        public DbSet<Ship2Company> Ship2Companies { get; set; }
+
         public IEnumerable<dynamic> GetUsers
         {
             get
@@ -44,6 +48,15 @@ namespace Data
                 var newException = new FormattedDbEntityValidationException(e);
                 throw newException;
             }
+        }
+
+        public void DeleteShip(int id)
+        {
+            var ship = Ships.First(x => x.Id == id);
+            Ship2Companies.RemoveRange(Ship2Companies.Where(x => x.Ship.Id.Equals(id)));
+            Crews.RemoveRange(Crews.Where(x => x.Ship.Id.Equals(id)));
+            Ships.Remove(ship);
+            SaveChanges();
         }
 
         public new void Dispose()

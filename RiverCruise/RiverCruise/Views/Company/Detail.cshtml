@@ -92,7 +92,6 @@
         $("#historyLink").parent().parent().children().removeClass("active");
         $("#historyLink").parent().addClass("active");
 
-        var $a = $(this);
         var options = {
             url: "@Url.Action("CompanyHistory", "Company", new { Id = Model.Id}, null)",
             type: "get"

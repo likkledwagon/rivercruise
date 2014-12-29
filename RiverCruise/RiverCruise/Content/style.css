@@ -67,7 +67,16 @@ body {
     background-color: #ffffe5;
 }
 
+.bs-callout-warning {
+    border-color: #8a6d3b;
+    background-color: #ffffe5;
+}
+
 .bs-callout-succes {
     border-color: green;
     background-color: #ffffe5;
+}
+
+.margin {
+    margin: 5px;
 }
