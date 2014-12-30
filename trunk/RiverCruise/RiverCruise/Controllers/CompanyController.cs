@@ -7,7 +7,7 @@ namespace RiverCruise.Controllers
 {
     public class CompanyController : BaseController
     {
-        public ActionResult Index(string searchText = null, int page = 1)
+        public ActionResult Index(string searchText = null, int page = 1, bool companyDeleted = false)
         {
             if (page < 1)
             {
@@ -15,7 +15,7 @@ namespace RiverCruise.Controllers
             }
 
             int totalItems = _db.Companies.Count(c => searchText== null || c.Name.Contains(searchText));
-            var companiesOverviewViewModel = new CompaniesOverviewViewModel(_db.Companies, page, totalItems, searchText);
+            var companiesOverviewViewModel = new CompaniesOverviewViewModel(_db.Companies, page, totalItems, searchText, companyDeleted);
 
             if (Request.IsAjaxRequest())
             {
@@ -25,13 +25,19 @@ namespace RiverCruise.Controllers
             return View(companiesOverviewViewModel);
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int id, bool actionFailed = false)
         {
             var company = _db.Companies.Where(x => x.Id.Equals(id));
             if (!company.Any())
             {
                 return HttpNotFound();
             }
+
+            if (actionFailed)
+            {
+                ModelState.AddModelError("", "Failed to delete company, please try again.");
+            }
+
             return View(new CompanyDetailViewModel(company.First()));
         }
 

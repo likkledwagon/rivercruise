@@ -10,7 +10,5 @@
 
 Bewerken gegevens
 -----------------
-- Company add
 - Report add
-
 - Report edit

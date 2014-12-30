@@ -30,10 +30,29 @@
                             Add Ship
                         </a>
                     </li>
+                    
+                    <li role="presentation">
+                        <a class="triggerModal" data-rc-modalaction="DeleteGet" data-rc-modalcontroller="CompanyManagement" href="#" data-rc-name="@Model.Name" data-rc-id ="@Model.Id">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            Delete
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
+        
         <span class="clearfix"></span>
+    }
+    
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="bs-callout bs-callout-danger text-danger">
+                    @Html.ValidationSummary()
+                </div>  
+            </div>
+        </div>
     }
 
     <ul class="nav nav-tabs">

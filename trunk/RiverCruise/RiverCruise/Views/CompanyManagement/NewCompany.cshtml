@@ -1,0 +1,50 @@
+﻿@model RiverCruise.Models.CompanyManagement.NewCompanyModel
+
+@{
+    ViewBag.Title = "New Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>New Company</h2>
+    <hr/>
+    <br/>
+    @using (Html.BeginForm("NewCompany", "CompanyManagement", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        if (!ViewData.ModelState.IsValid)
+        {
+            <div class="bs-callout bs-callout-danger text-danger ">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        if (Model.CompanyAdded)
+        {
+            <div class="bs-callout bs-callout-succes text-success ">
+                <ul>
+                    <li>Company added</li>
+                </ul>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => Model.Name, new {@class="form-control"})
+                <span class="text-danger">@Html.ValidationMessageFor(model => model.Name)</span>
+            </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <div class="col-sm-2 ">
+                <span>@Html.ActionLink("Back to companies", "Index", "Company", null, new { @class = "btn btn-block btn-warning" })</span>
+            </div>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary form-control">Create</button>
+            </div>
+        </div>
+    }
+
+</div>

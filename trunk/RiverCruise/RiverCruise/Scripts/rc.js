@@ -66,4 +66,25 @@
         });
         return false;
     });
+
+    $(".pageContent").on("click", "a.triggerModal", function(event) {
+        event.preventDefault();
+
+
+        var id = $(this).attr("data-rc-id");
+        var name = $(this).attr("data-rc-name");
+        var options = {
+            url: '/' + $(this).attr("data-rc-modalcontroller") + '/' + $(this).attr("data-rc-modalaction"),
+            type: "get",
+            data: { id: id, name: name }
+        };
+
+        $.ajax(options).done(function(data) {
+            $("#modalPlaceHolder").html(data);
+            $("#partialModal").modal('show');
+        });
+        return false;
+    });
+
+    $(".bs-callout").delay(2000).slideUp(400);
 })

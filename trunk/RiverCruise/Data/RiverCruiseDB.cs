@@ -85,6 +85,25 @@ namespace Data
             SaveChanges();
         }
 
+        public void AddCompany(NewCompanyProxyModel proxyModel)
+        {
+            Companies.Add(new Company()
+            {
+                Name = proxyModel.Name
+            });
+            SaveChanges();
+        }
+
+        public void DeleteCompany(DeleteCompanyProxyModel deleteCompanyProxyModel)
+        {
+            var company = Companies.Find(deleteCompanyProxyModel.Id);
+
+            company.Ship2Company.Select(x => x.Ship.Id).ToList().ForEach(DeleteShip);
+            Companies.Remove(company);
+
+            SaveChanges();
+        }
+
         public new void Dispose()
         {
             base.Dispose();
