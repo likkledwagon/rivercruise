@@ -65,7 +65,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Region, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Region, new { @class = "form-control", placeholder = "Flag" })
+                @Html.TextBoxFor(model => model.Region, new { @class = "form-control", placeholder = "Region" })
                 <span class="text-danger">@Html.ValidationMessageFor(model => model.Region)</span>
             </div>
         </div>
@@ -73,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NauticalCrew, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.NauticalCrew, new { @class = "form-control", placeholder = "Flag" })
+                @Html.TextBoxFor(model => model.NauticalCrew, new { @class = "form-control", placeholder = "0" })
                 <span class="text-danger">@Html.ValidationMessageFor(model => model.NauticalCrew)</span>
             </div>
         </div>
@@ -81,7 +81,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HotselStaff, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.HotselStaff, new { @class = "form-control", placeholder = "Flag" })
+                @Html.TextBoxFor(model => model.HotselStaff, new { @class = "form-control", placeholder = "0" })
                 <span class="text-danger">@Html.ValidationMessageFor(model => model.HotselStaff)</span>
             </div>
         </div>
