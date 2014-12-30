@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyModel\Company\EditCompanyProxyModel.cs" />
     <Compile Include="ProxyModel\Ship\EditShipProxyModel.cs" />
     <Compile Include="RiverCruiseDB.cs" />
   </ItemGroup>

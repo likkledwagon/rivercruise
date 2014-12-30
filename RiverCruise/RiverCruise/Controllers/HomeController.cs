@@ -21,6 +21,7 @@ namespace RiverCruise.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
         public ActionResult WhatsNew()
         {
             return View("WhatsNew");

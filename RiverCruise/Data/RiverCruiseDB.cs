@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Web.Mvc;
+using Data.ProxyModel.Company;
 using Data.ProxyModel.Ship;
 using DataModels;
 
@@ -71,6 +72,13 @@ namespace Data
             crew.HotelStaff = dataShip.HotelStaff;
             crew.NauticalCrew = dataShip.NauticalCrew;
 
+            SaveChanges();
+        }
+
+        public void EditCompanyData(EditCompanyProxyModel proxyModel)
+        {
+            var company = Companies.Find(proxyModel.Id);
+            company.Name = proxyModel.Name;
             SaveChanges();
         }
 

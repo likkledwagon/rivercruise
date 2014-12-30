@@ -6,7 +6,7 @@ using Data.ProxyModel.Ship;
 using DataModels;
 using RiverCruise.Models.ShipManagement;
 
-namespace RiverCruise.Converters
+namespace RiverCruise.Converters.Ship
 {
     public static class ShipConverter
     {
@@ -26,7 +26,7 @@ namespace RiverCruise.Converters
                     {
                         From = DateTime.Now,
                         Until = new DateTime(9999, 12, 31),
-                        Ship = new Ship
+                        Ship = new DataModels.Ship
                         {
                             Crew =
                                 new Collection<Crew>
