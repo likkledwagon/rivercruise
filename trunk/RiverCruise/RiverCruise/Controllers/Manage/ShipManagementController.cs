@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
-using RiverCruise.Converters;
+using RiverCruise.Converters.Ship;
 using RiverCruise.Models.Shared;
 using RiverCruise.Models.Ship;
 using RiverCruise.Models.ShipManagement;
@@ -97,8 +97,16 @@ namespace RiverCruise.Controllers.Manage
         public ActionResult Edit(EditShipViewModel model)
         {
             var dataShip = model.ToEditShipDataModel();
-            _db.EditShipData(dataShip);
-            return RedirectToAction("Edit", new {model.Id, shipEdited = true});
+            try
+            {
+                _db.EditShipData(dataShip);
+                return RedirectToAction("Edit", new { model.Id, shipEdited = true });
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Something went wrong, please try again.");
+                return View(model);
+            }
         }
     }
 }

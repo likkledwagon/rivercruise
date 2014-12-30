@@ -129,10 +129,12 @@
     <Compile Include="Controllers\BaseManagementController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Manage\CompanyManagementController.cs" />
     <Compile Include="Controllers\Manage\ShipManagementController.cs" />
     <Compile Include="Controllers\Manage\UserManagementController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Converters\ShipConverter.cs" />
+    <Compile Include="Converters\Company\CompanyConverter.cs" />
+    <Compile Include="Converters\Ship\ShipConverter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +142,7 @@
     <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\User.cs" />
     <Compile Include="Models\BasePagingModel.cs" />
+    <Compile Include="Models\CompanyManagement\EditCompanyModel.cs" />
     <Compile Include="Models\Company\CompaniesOverviewViewModel.cs" />
     <Compile Include="Models\Company\CompanyDetailViewModel.cs" />
     <Compile Include="Models\Company\CompanyHistoryModel.cs" />
@@ -266,6 +269,7 @@
     <Content Include="Views\Home\_shipHistory.cshtml" />
     <Content Include="Views\ShipManagement\Edit.cshtml" />
     <Content Include="Views\Shared\WhatsNew.cshtml" />
+    <Content Include="Views\CompanyManagement\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,9 +18,14 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li>
+                        <a href="@Url.Action("Edit", "CompanyManagement", new {Id = Model.Id})">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            Edit
+                        </a>
+                    </li>
                     <li role="presentation">
                         <a href="@Url.Action("AddShip", "ShipManagement", new {CompanyId = Model.Id })" class="">
-
                             <span class="glyphicon glyphicon glyphicon-plus"></span>
                             Add Ship
                         </a>
