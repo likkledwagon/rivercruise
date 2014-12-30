@@ -27,7 +27,8 @@ namespace RiverCruise.Controllers.Manage
 
             return View(new NewShipViewModel()
             {
-                Comany = newShipCompanyViewModel
+                Comany = newShipCompanyViewModel,
+                Since = DateTime.Now
             });
         }
 
@@ -35,19 +36,22 @@ namespace RiverCruise.Controllers.Manage
         [ValidateAntiForgeryToken]
         public ActionResult AddShip(NewShipViewModel model)
         {
-            var dataShip = model.ToNewShipDataModel();
-            
-            if(dataShip == null)
-            { 
-                ModelState.AddModelError("", "Something went wrong");
-                return View(model);
-            }
-
-            return View(new NewShipViewModel()
+            if (ModelState.IsValid)
             {
-                ShipModified = true,
-                Comany = model.Comany
-            });
+                var dataShip = model.ToNewShipDataModel();
+
+                if (dataShip != null)
+                {
+                    return View(new NewShipViewModel()
+                    {
+                        ShipModified = true,
+                        Comany = model.Comany
+                    });
+                }
+
+                ModelState.AddModelError("", "Something went wrong");
+            }
+            return View(model);
         }
 
         [HttpGet]
@@ -96,17 +100,20 @@ namespace RiverCruise.Controllers.Manage
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditShipViewModel model)
         {
-            var dataShip = model.ToEditShipDataModel();
-            try
-            {
-                _db.EditShipData(dataShip);
-                return RedirectToAction("Edit", new { model.Id, shipEdited = true });
+            if(ModelState.IsValid)
+            { 
+                var dataShip = model.ToEditShipDataModel();
+                try
+                {
+                    _db.EditShipData(dataShip);
+                    return RedirectToAction("Edit", new { model.Id, shipEdited = true });
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", "Something went wrong, please try again.");
+                }
             }
-            catch (Exception e)
-            {
-                ModelState.AddModelError("", "Something went wrong, please try again.");
-                return View(model);
-            }
+            return View(model);
         }
     }
 }

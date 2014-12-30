@@ -13,7 +13,7 @@ namespace RiverCruise.Models.Ship
             Remarks = report.Remarks;
         }
 
-        public string Date { get { return _date.Equals(new DateTime()) ? "-" : _date.ToString("yyyy mmmm dd"); } }
+        public string Date { get { return _date.Equals(new DateTime()) ? "-" : _date.ToString("mmmm dd yyyy"); } }
         public string Ref { get; set; }
         public string Remarks { get; set; }
     }
