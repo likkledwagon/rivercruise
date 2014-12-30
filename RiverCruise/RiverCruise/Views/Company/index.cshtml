@@ -1,4 +1,5 @@
-﻿@model RiverCruise.Models.Company.CompaniesOverviewViewModel
+﻿@using RiverCruise.Helpers
+@model RiverCruise.Models.Company.CompaniesOverviewViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,6 +24,21 @@
             </div>
         }
     </div>
+    @if (Roles.IsUserInRole(RoleHelper.Edit))
+    {
+        <div class="pull-right">
+            <a class="btn btn-success marginTop" href="@Url.Action("NewCompany", "CompanyManagement")"><span class="glyphicon glyphicon-plus-sign"></span> New Company</a>
+        </div>
+    }
+    
+    <span class="clearfix"></span>
+
+    @if (Model.CompanyDeleted)
+    {
+        <div class="bs-callout bs-callout-warning text-warning">
+            <ul><li>Company has been deleted.</li></ul>
+        </div>
+    }   
     
     <h2>Companies</h2>
     

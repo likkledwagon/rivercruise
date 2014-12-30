@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Data.ProxyModel.Company;
 using RiverCruise.Converters.Company;
 using RiverCruise.Models.CompanyManagement;
+using RiverCruise.Models.Shared;
 
 namespace RiverCruise.Controllers.Manage
 {
@@ -35,6 +38,72 @@ namespace RiverCruise.Controllers.Manage
                 return View(model);
             }
 
+        }
+
+        public ActionResult NewCompany()
+        {
+            return View(new NewCompanyModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewCompany(NewCompanyModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var proxyModel = model.ToNewCompanyProxyModel();
+
+                    _db.AddCompany(proxyModel);
+
+                    model.CompanyAdded = true;
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Something went wrong please try again.");
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteGet(int id, string name)
+        {
+            var modalModel = new ModalModel()
+            {
+                Action = "Delete",
+                Arguments = new Dictionary<string, object>() { { "id", id } },
+                Body = "Are you sure you want to delete " + name + " and all it's ships?",
+                Controller = "CompanyManagement",
+                Title = "Confirm"
+            };
+
+            return PartialView("Modal", modalModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var deleteCompanyProxyModel = new DeleteCompanyProxyModel()
+                {
+                    Id = id
+                };
+
+                _db.DeleteCompany(deleteCompanyProxyModel);
+
+                return RedirectToAction("Index", "Company", new { companyDeleted = true });
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Detail", "Company", new { id = id, actionFailed = true });
+            }
+
+            
         }
     }
 }

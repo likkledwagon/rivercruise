@@ -22,5 +22,7 @@ namespace Data
         void DeleteShip(int id);
         void EditShipData(EditShipProxyModel dataShip);
         void EditCompanyData(EditCompanyProxyModel proxyModel);
+        void AddCompany(NewCompanyProxyModel proxyModel);
+        void DeleteCompany(DeleteCompanyProxyModel deleteCompanyProxyModel);
     }
 }

@@ -13,5 +13,13 @@ namespace RiverCruise.Converters.Company
                 Name = model.Name
             };
         }
+
+        public static NewCompanyProxyModel ToNewCompanyProxyModel(this NewCompanyModel model)
+        {
+            return new NewCompanyProxyModel()
+            {
+                Name = model.Name
+            };
+        }
     }
 }
