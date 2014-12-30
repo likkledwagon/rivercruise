@@ -38,6 +38,12 @@ namespace RiverCruise.Models.ShipManagement
             {
                 Comany = new NewShipCompanyViewModel();
             }
+
+            var ship2Company = queryResult.Ship2Company.FirstOrDefault(x => x.From < DateTime.Now && x.Until >= DateTime.Now);
+            if (ship2Company != null)
+            {
+                Since = ship2Company.From;
+            }
         }
 
         public int Id { get; set; }

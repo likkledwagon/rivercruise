@@ -16,12 +16,12 @@ namespace RiverCruise.Models.Company
 
         public string Until
         {
-            get { return _until.ToString("yyyy mmmm dd"); }
+            get { return _until.ToString("mmmm dd yyyy"); }
         }
 
         public string From
         {
-            get { return _from.ToString("yyyy mmmm dd"); }
+            get { return _from.ToString("mmmm dd yyyy"); }
         }
     }
 }

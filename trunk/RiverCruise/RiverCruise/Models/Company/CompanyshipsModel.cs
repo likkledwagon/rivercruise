@@ -13,7 +13,7 @@ namespace RiverCruise.Models.Company
             LastReport = "-";
             if (shipCompany.Ship.Reports.Any())
             {
-                LastReport = shipCompany.Ship.Reports.OrderByDescending(x => x.Date).Select(y => y.Date).First().ToString("yyyy mmmm dd");
+                LastReport = shipCompany.Ship.Reports.OrderByDescending(x => x.Date).Select(y => y.Date).First().ToString("mmmm dd yyyy");
             }
         }
 

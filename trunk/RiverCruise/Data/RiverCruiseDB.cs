@@ -72,6 +72,9 @@ namespace Data
             crew.HotelStaff = dataShip.HotelStaff;
             crew.NauticalCrew = dataShip.NauticalCrew;
 
+            var ship2Company = ship.Ship2Company.Single(x => x.From < DateTime.Now && x.Until >= DateTime.Now);
+            ship2Company.From = dataShip.Since;
+
             SaveChanges();
         }
 

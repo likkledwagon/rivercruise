@@ -26,7 +26,7 @@ namespace RiverCruise.Models.Ship
         {
             get
             {
-                return _lastReport.Equals(new DateTime()) ? "-" : _lastReport.ToString("yyyy mmmm dd");
+                return _lastReport.Equals(new DateTime()) ? "-" : _lastReport.ToString("mmmm dd yyyy");
             }
         }
     }

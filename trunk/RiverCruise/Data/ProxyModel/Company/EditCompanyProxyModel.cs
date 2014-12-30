@@ -1,8 +1,7 @@
 ﻿namespace Data.ProxyModel.Company
 {
-    public class EditCompanyProxyModel
+    public class EditCompanyProxyModel : NewCompanyProxyModel
     {
         public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

@@ -13,5 +13,4 @@ Bewerken gegevens
 - Company add
 - Report add
 
-- Company edit
 - Report edit

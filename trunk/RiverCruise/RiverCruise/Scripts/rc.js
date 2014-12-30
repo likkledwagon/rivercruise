@@ -2,6 +2,14 @@
 
    // $(".faderContent").hide();
     // $(".faderContent").fadeIn();
+    $('.datepicker').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'mm/dd/yy'
+    });
+
+    $('datepicker-defaultDate').datepicker("setDate", new Date());
+
 
     var createAutoComplete = function() {
         var $input = $(this);

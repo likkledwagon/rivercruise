@@ -24,7 +24,7 @@ namespace RiverCruise.Converters.Ship
 
                     var ship2Company = new Ship2Company
                     {
-                        From = DateTime.Now,
+                        From = newShipViewModel.Since,
                         Until = new DateTime(9999, 12, 31),
                         Ship = new DataModels.Ship
                         {
@@ -69,7 +69,8 @@ namespace RiverCruise.Converters.Ship
                 Flag = editShipViewModel.Flag,
                 Region = editShipViewModel.Region,
                 NauticalCrew = editShipViewModel.NauticalCrew,
-                HotelStaff = editShipViewModel.HotselStaff
+                HotelStaff = editShipViewModel.HotselStaff,
+                Since = editShipViewModel.Since
             };
         }
     }
