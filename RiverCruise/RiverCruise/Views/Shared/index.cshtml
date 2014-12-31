@@ -25,6 +25,15 @@
         }
     </div>
     <!--searchform-->
+    
+    <span class="clearfix"></span>
+    
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="bs-callout bs-callout-warning text-warning">
+            @Html.ValidationSummary()
+        </div>
+    }
 
     <h2>
         Ships
