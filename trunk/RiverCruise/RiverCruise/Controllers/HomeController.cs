@@ -27,7 +27,7 @@ namespace RiverCruise.Controllers
             return View("WhatsNew");
         }
 
-        public ActionResult Index(string searchText, int page = 1)
+        public ActionResult Index(string searchText, int page = 1, bool shipDeleted = false)
         {
             if (page < 1)
             {
@@ -40,6 +40,11 @@ namespace RiverCruise.Controllers
             if (Request.IsAjaxRequest())
             {
                 return PartialView("~/Views/Home/_Ships.cshtml", shipsModel);
+            }
+
+            if (shipDeleted)
+            {
+                ModelState.AddModelError("", "Ship Deleted.");
             }
 
             return View(shipsModel);

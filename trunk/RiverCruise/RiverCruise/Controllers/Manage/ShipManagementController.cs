@@ -82,7 +82,7 @@ namespace RiverCruise.Controllers.Manage
                 return RedirectToAction("Detail", "Home", new {Id = id, actionFailed = true});
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { shipDeleted = true });
         }
 
         public ActionResult Edit(int id, bool shipEdited = false)
