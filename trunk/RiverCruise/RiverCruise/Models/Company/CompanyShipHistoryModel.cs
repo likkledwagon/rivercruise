@@ -1,27 +1,25 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using DataModels;
 
 namespace RiverCruise.Models.Company
 {
-    public class CompanyShipHistoryModel : CompanyshipsModel
+    public enum HistoryType
     {
-        private DateTime _until;
-        private DateTime _from;
+        In, Out
+    }
 
-        public CompanyShipHistoryModel(Ship2Company shipCompany) : base(shipCompany)
-        {
-            _from = shipCompany.From;
-            _until = shipCompany.Until;
-        }
+    public class CompanyShipHistoryModel
+    {
 
-        public string Until
-        {
-            get { return _until.ToString("mmmm dd yyyy"); }
-        }
+        public int ShipId { get; set; }
 
-        public string From
-        {
-            get { return _from.ToString("mmmm dd yyyy"); }
-        }
+        public string ShipName { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Date { get; set; }
+
+        public HistoryType HistoryType { get; set; }
     }
 }

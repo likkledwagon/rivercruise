@@ -53,15 +53,21 @@ namespace RiverCruise.Controllers
         [HttpGet]
         public ActionResult CompanyHistory(int id, int page = 1)
         {
-            int totalItems = _db.Companies.Where(x => x.Id == id)
+            // sold
+            var totalItems = _db.Companies.Where(x => x.Id == id)
                 .SelectMany(y => y.Ship2Company).Count(z => z.Until <= DateTime.Now);
+            // acquired
+            totalItems += _db.Companies.Where(x => x.Id == id)
+                .SelectMany(y => y.Ship2Company).Count();
 
-            var query = _db.Companies.Where(x => x.Id == id)
+            var querySold= _db.Companies.Where(x => x.Id == id)
                 .SelectMany(y => y.Ship2Company)
-                .Where(z => z.Until <= DateTime.Now)
+                .Where(x => x.Until <= DateTime.Now)
                 .Select(a => a);
 
-            var model = new CompanyHistoryModel(query, page, totalItems);
+            var query = _db.Companies.Where(x => x.Id == id).SelectMany(y => y.Ship2Company);
+
+            var model = new CompanyHistoryModel(query, querySold, page, totalItems);
             return PartialView("~/Views/Company/_companyHistory.cshtml", model);
         }
     }
