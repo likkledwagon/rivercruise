@@ -1,5 +1,6 @@
-﻿@model RiverCruise.Models.Company.CompanyHistoryModel
-<div class="pagerTarget">
+﻿@using RiverCruise.Models.Company
+@model RiverCruise.Models.Company.CompanyHistoryModel
+<div id="pagerTarget">
 
     @if (Model.Ships.Any())
     {
@@ -11,8 +12,14 @@
                 <hr />
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-9"><h4>@Html.ActionLink(ship.Name, "Detail", "Home", new {ship.Id}, null)</h4></div>
-                        <div class="col-md-3">@ship.From - @ship.Until</div>
+                        <div class="col-md-1">
+                            <h4>
+                                <span class="@(ship.HistoryType == HistoryType.In ? "glyphicon glyphicon-chevron-down text-success" : "glyphicon glyphicon-chevron-up text-danger")"></span>
+                            </h4>
+                        </div>
+                        <div class="col-md-9"><h4>@Html.ActionLink(ship.ShipName, "Detail", "Home", new {ship.ShipId}, null)</h4>
+                        </div>
+                        <div class="col-md-2">@Html.DisplayFor(model => ship.Date)</div>
                     </div>
                 </div>
             }
