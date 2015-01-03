@@ -17,7 +17,7 @@
                                 <span class="@(ship.HistoryType == HistoryType.In ? "glyphicon glyphicon-chevron-down text-success" : "glyphicon glyphicon-chevron-up text-danger")"></span>
                             </h4>
                         </div>
-                        <div class="col-md-9"><h4>@Html.ActionLink(ship.ShipName, "Detail", "Home", new {ship.ShipId}, null)</h4>
+                        <div class="col-md-9"><h4>@Html.ActionLink(ship.ShipName, "Detail", "Home", new {Id = ship.ShipId}, null)</h4>
                         </div>
                         <div class="col-md-2">@Html.DisplayFor(model => ship.Date)</div>
                     </div>

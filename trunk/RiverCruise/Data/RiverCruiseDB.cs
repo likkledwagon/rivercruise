@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -102,6 +103,48 @@ namespace Data
             Companies.Remove(company);
 
             SaveChanges();
+        }
+
+        public void ChangeCompay(ChangeCompanyProxyModel toChangeCompanyProxyModel)
+        {
+            var company = Companies.Where(x => x.Name.Equals(toChangeCompanyProxyModel.NewCompanyName));
+
+            if (company.Count() != 1)
+            {
+                throw new Exception("No company found by that name");
+            }
+
+            var ship = Ships.Find(toChangeCompanyProxyModel.ShipId);
+            if (ship == null)
+            {
+                throw new Exception("Something went wrong please try again");
+            }
+
+            var currentShip2CompaniesToClose = ship.Ship2Company.Where(x => x.Until >= toChangeCompanyProxyModel.Since);
+            currentShip2CompaniesToClose.ToList().ForEach(x => CloseCompanyToShip(x, toChangeCompanyProxyModel.Since));
+            Ship2Companies.RemoveRange(currentShip2CompaniesToClose.Where(x => x.From == new DateTime(9999, 12, 31)));
+
+            ship.Ship2Company.Add(new Ship2Company()
+            {
+                Company = company.First(),
+                From = toChangeCompanyProxyModel.Since,
+                Until = new DateTime(9999, 12, 31),
+            });
+
+            SaveChanges();
+        }
+
+        private void CloseCompanyToShip(Ship2Company ship2Company, DateTime since)
+        {
+            if (ship2Company.From > since.AddDays(-1))
+            {
+                ship2Company.From = new DateTime(9999, 12, 31);
+                ship2Company.Until = new DateTime(9999, 12, 31);
+            }
+            else
+            {
+                ship2Company.Until = since.AddDays(-1) < new DateTime(1900, 01, 01) ? new DateTime(1900, 01, 01) : since.AddDays(-1);
+            }
         }
 
         public new void Dispose()

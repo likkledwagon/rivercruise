@@ -126,11 +126,15 @@
     </div>
 </div>
 <script>
+    $(document).ready(function() {
+        $('#historyPlaceHolder').hide();
+    });
+    
     $("#historyLink").click(function (e) {
         e.preventDefault();
 
         $("#DetailTabContent").hide();
-        $("#historyPlaceHolder").show();
+        $("#historyPlaceHolder").fadeIn();
         $("#historyLink").parent().parent().children().removeClass("active");
         $("#historyLink").parent().addClass("active");
 
@@ -150,7 +154,7 @@
     $("#DetailLink").click(function (e) {
         e.preventDefault();
         $("#historyPlaceHolder").hide();
-        $("#DetailTabContent").show();
+        $("#DetailTabContent").fadeIn();
         $("#DetailLink").parent().parent().children().removeClass("active");
         $("#DetailLink").parent().addClass("active");
         return null;

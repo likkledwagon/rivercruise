@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc.Html;
+using RiverCruise.Validation;
 
 namespace RiverCruise.Models.ShipManagement
 {
@@ -27,21 +28,5 @@ namespace RiverCruise.Models.ShipManagement
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Since { get; set; }
-    }
-
-    public class DateValidationAttribute : ValidationAttribute
-    {
-        public override bool IsValid(object value)
-        {
-            try
-            {
-                return (((DateTime) value) >= new DateTime(1900, 01, 01) &&
-                        ((DateTime) value) <= DateTime.Now);
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

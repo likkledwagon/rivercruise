@@ -24,5 +24,6 @@ namespace Data
         void EditCompanyData(EditCompanyProxyModel proxyModel);
         void AddCompany(NewCompanyProxyModel proxyModel);
         void DeleteCompany(DeleteCompanyProxyModel deleteCompanyProxyModel);
+        void ChangeCompay(ChangeCompanyProxyModel toChangeCompanyProxyModel);
     }
 }

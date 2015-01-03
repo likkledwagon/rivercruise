@@ -152,9 +152,12 @@
     <Compile Include="Models\Report\ReportsViewModel.cs" />
     <Compile Include="Models\Shared\ModalModel.cs" />
     <Compile Include="Models\Shared\ValidationResult.cs" />
+    <Compile Include="Models\ShipManagement\ChangeCompanymodel.cs" />
+    <Compile Include="Models\ShipManagement\ChangeCompanyNewCompanyOptionModel.cs" />
     <Compile Include="Models\ShipManagement\EditShipViewModel.cs" />
     <Compile Include="Models\ShipManagement\NewShipCompanyViewModel.cs" />
     <Compile Include="Models\ShipManagement\NewShipViewModel.cs" />
+    <Compile Include="Models\Ship\ShipCompanyHistoryModel.cs" />
     <Compile Include="Models\Ship\ShipDetailModel.cs" />
     <Compile Include="Models\Ship\ShipDetailReportViewModel.cs" />
     <Compile Include="Models\Ship\ShipHistoryModel.cs" />
@@ -165,6 +168,7 @@
     <Compile Include="Models\UserManagement\UsersViewModel.cs" />
     <Compile Include="Models\UserManagement\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\DateValidationAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -275,6 +279,8 @@
     <Content Include="Views\Shared\WhatsNew.cshtml" />
     <Content Include="Views\CompanyManagement\Edit.cshtml" />
     <Content Include="Views\CompanyManagement\NewCompany.cshtml" />
+    <Content Include="Views\ShipManagement\ChangeCompany.cshtml" />
+    <Content Include="Views\Home\_shipCompanyHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

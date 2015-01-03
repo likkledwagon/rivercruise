@@ -20,6 +20,13 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation">
+                        <a href="@Url.Action("ChangeCompany", "ShipManagement", new { Id = Model.ShipId }, null)">
+                            <span class="glyphicon glyphicon-retweet"></span>
+                             Change Company (sold)
+                        </a>
+                    </li>
+                    <li role="presentation" class="divider"></li>
                     <li role="presentation"><a class="" href="@Url.Action("Edit", "ShipManagement", new {Id = Model.ShipId }, null)"><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
                     <!--
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
@@ -42,6 +49,7 @@
     <div>
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#" id="DetailLink">Detail</a></li>
+            <li role="presentation"><a href="#" id="companyHistoryLink">Company History</a></li>
             <li role="presentation"><a href="#" id="historyLink">Crew History</a></li>
         </ul>
     </div><!-- tabs -->
@@ -91,14 +99,29 @@
     </div>
     
 
-    <div id="historyPlaceHolder"></div>
+    <div id="historyPlaceHolder">
+        <div class="text-center">
+            <img src="~/Content/images/loading5.gif" alt="Loading..." />
+        </div>
+    </div>
+    <div id="companyHistoryPlaceHolder">
+        <div class="text-center">
+            <img src="~/Content/images/loading5.gif" alt="Loading..." />
+        </div>
+    </div>
 </div>
 <script>
+    $(document).ready(function() {
+        $("#historyPlaceHolder").hide();
+        $('#companyHistoryPlaceHolder').hide();
+    });
+
     $("#historyLink").click(function (e) {
         e.preventDefault();
 
         $("#DetailTabContent").hide();
-        $("#historyPlaceHolder").show();
+        $('#companyHistoryPlaceHolder').hide();
+        $("#historyPlaceHolder").fadeIn();
         $("#historyLink").parent().parent().children().removeClass("active");
         $("#historyLink").parent().addClass("active");
 
@@ -115,10 +138,31 @@
         return null;
     });
 
+    $('#companyHistoryLink').click(function (e) {
+        e.preventDefault();
+        $('#DetailTabContent').hide();
+        $('#historyPlaceHolder').hide();
+        $('#companyHistoryPlaceHolder').fadeIn();
+        $("#historyLink").parent().parent().children().removeClass("active");
+        $('#companyHistoryLink').parent().addClass("active");
+        var options = {
+            url: "@Url.Action("ShipCompanyHistory", "Home", new { Id = Model.ShipId}, null)",
+            type: "get"
+        };
+
+        $.ajax(options).done(function (data) {
+            var target = "#companyHistoryPlaceHolder";
+            $(target).html(data);
+        });
+
+        return null;
+    });
+
     $("#DetailLink").click(function (e) {
         e.preventDefault();
         $("#historyPlaceHolder").hide();
-        $("#DetailTabContent").show();
+        $('#companyHistoryPlaceHolder').hide();
+        $("#DetailTabContent").fadeIn();
         $("#DetailLink").parent().parent().children().removeClass("active");
         $("#DetailLink").parent().addClass("active");
         return null;

@@ -75,5 +75,22 @@ namespace RiverCruise.Controllers
 
             return PartialView("~/Views/home/_shipHistory.cshtml", model);
         }
+
+        public ActionResult ShipCompanyHistory(int id, int page = 1)
+        {
+            var query = _db.Ships.Find(id);
+            if (query == null)
+            {
+                return HttpNotFound();
+            }
+
+            var totalItems = query.Ship2Company.Count();
+            var model = new ShipCompanyHistoryModel(query.Ship2Company, page, totalItems)
+            {
+                Action = "ShipCompanyHistory",
+                Controller = "Home"
+            };
+            return PartialView("~/Views/home/_shipCompanyHistory.cshtml", model);
+        }
     }
 }

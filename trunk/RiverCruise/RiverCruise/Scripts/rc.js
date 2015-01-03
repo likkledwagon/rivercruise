@@ -26,8 +26,11 @@
         var $input = $(this);
         $input.val(ui.item.label);
 
-        var $form = $input.parents("form:first");
-        $form.submit();
+        if ($input.attr('data-autocomplete-submit'))
+        {
+            var $form = $input.parents("form:first");
+            $form.submit();
+        }
     };
 
     var getPage = function(href) {
