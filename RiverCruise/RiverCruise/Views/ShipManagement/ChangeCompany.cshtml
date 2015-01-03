@@ -1,0 +1,66 @@
+﻿@using System.Runtime.InteropServices
+@model RiverCruise.Models.ShipManagement.ChangeCompanymodel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Change company";
+}
+
+<div class="container-fluid">
+    <h2>Change company</h2>
+    <div class="alert alert-info">
+        <ul>
+            <li>Changing a ship's company will automatically remove any overlapping owners.</li>
+        </ul>
+    </div>
+    @using (Html.BeginForm("ChangeCompany", "ShipManagement", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => Model.ShipId)
+
+        if (!ViewData.ModelState.IsValid)
+        {
+            <div class="bs-callout bs-callout-danger text-danger ">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        if (Model.CompanyChanged)
+        {
+            <div class="bs-callout bs-callout-succes text-success ">
+                <ul>
+                    <li>Company updated</li>
+                </ul>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CurrentCompanyName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-7">
+                @Html.TextBoxFor(model => model.CurrentCompanyName, new { @class = "form-control disabled", placeholder = "Name", @readonly = "readonly"})
+            </div>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.CurrentCompanySince,"{0:MM/dd/yyyy}", new { @class = "form-control disabled", @readonly ="readonly" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewCompany, new {@class = "col-sm-2 control-label"})
+            <div class="col-sm-7">
+                @Html.TextBoxFor(model => model.NewCompany, new { @class = "form-control", data_otf_autocomplete=Url.Action("AutoComplete", "ShipManagement") })
+            </div>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.NewCompanySince, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker datepicker-defaultDate" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-2">
+                @Html.ActionLink("Back to Detail", "Detail", "Home", new { Id = Model.ShipId }, new { @class="form-control btn btn-warning" })
+            </div>
+            <div class="col-sm-10">
+                <input type="submit" class="form-control btn btn-primary" value="Change company"/>
+            </div>
+        </div>
+    }
+</div>

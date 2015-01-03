@@ -108,12 +108,58 @@ namespace RiverCruise.Controllers.Manage
                     _db.EditShipData(dataShip);
                     return RedirectToAction("Edit", new { model.Id, shipEdited = true });
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     ModelState.AddModelError("", "Something went wrong, please try again.");
                 }
             }
             return View(model);
+        }
+
+        public ActionResult ChangeCompany(int id)
+        {
+            var ship = _db.Ships.Find(id);
+
+            if (ship == null)
+            {
+                return HttpNotFound();
+            }
+
+            var currentCompany = ship.Ship2Company.Single(x => x.From < DateTime.Now && x.Until >= DateTime.Now);
+            var companyOptions = _db.Companies.OrderBy(x => x.Name).Take(10);
+            return View(new ChangeCompanymodel(id, currentCompany, companyOptions));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeCompany(ChangeCompanymodel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _db.ChangeCompay(model.ToChangeCompanyProxyModel());
+                    model.CompanyChanged = true;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public JsonResult AutoComplete(string term)
+        {
+            var model = _db.Companies.
+                Where(r => r.Name.StartsWith(term))
+                .OrderBy(o => o.Name)
+                .Take(10)
+                .Select(r => new {label = r.Name});
+
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }

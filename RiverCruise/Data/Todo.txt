@@ -1,6 +1,9 @@
 ﻿big
 ---
-- test paging history
+- company history in ship detail
+- delete company revamp
+- change crew (with history)
+
 - company historiek search?
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Data.ProxyModel.Company;
@@ -32,7 +33,7 @@ namespace RiverCruise.Controllers.Manage
                 _db.EditCompanyData(proxyModel);
                 return RedirectToAction("Edit", new { model.Id, companyEdited = true });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Something went wrong, please try again.");
                 return View(model);
@@ -53,11 +54,19 @@ namespace RiverCruise.Controllers.Manage
             {
                 try
                 {
-                    var proxyModel = model.ToNewCompanyProxyModel();
+                    if (_db.Companies.Any(x => x.Name == model.Name))
+                    {
+                        ModelState.AddModelError("", "A company by that name allready exists.");
+                    }
 
-                    _db.AddCompany(proxyModel);
+                    if(ModelState.IsValid)
+                    { 
+                        var proxyModel = model.ToNewCompanyProxyModel();
 
-                    model.CompanyAdded = true;
+                        _db.AddCompany(proxyModel);
+
+                        model.CompanyAdded = true;
+                    }
                 }
                 catch (Exception)
                 {
@@ -98,7 +107,7 @@ namespace RiverCruise.Controllers.Manage
 
                 return RedirectToAction("Index", "Company", new { companyDeleted = true });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToAction("Detail", "Company", new { id = id, actionFailed = true });
             }
