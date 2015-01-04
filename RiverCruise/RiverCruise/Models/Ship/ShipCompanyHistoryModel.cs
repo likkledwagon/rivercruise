@@ -17,8 +17,8 @@ namespace RiverCruise.Models.Ship
                 {
                     From = x.From,
                     Until = x.Until,
-                    Company = x.Company.Name,
-                    CompanyId = x.Company.Id
+                    Company = x.Company == null ? "????" : x.Company.Name,
+                    CompanyId = x.Company == null ? -1 : x.Company.Id
                 });
             Initialize(page, totalItems, "Home");
         }

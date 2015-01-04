@@ -35,7 +35,7 @@ namespace RiverCruise.Controllers
 
             if (actionFailed)
             {
-                ModelState.AddModelError("", "Failed to delete company, please try again.");
+                ModelState.AddModelError("", "Failed to delete company, please try again. If you are trying to delete a company with active ships try removing them first.");
             }
 
             return View(new CompanyDetailViewModel(company.First()));
