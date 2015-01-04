@@ -1,7 +1,6 @@
 ﻿big
 ---
-- company history in ship detail
-- delete company revamp
+- cleanup company overview model
 - change crew (with history)
 
 - company historiek search?
