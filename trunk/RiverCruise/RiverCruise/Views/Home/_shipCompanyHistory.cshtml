@@ -14,7 +14,16 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">@Html.DisplayFor(model=> crew.From) - @Html.DisplayFor(model => crew.Until)</div>
-                        <div class="col-md-6">@Html.ActionLink(crew.Company, "Detail", "Company", new { Id = crew.CompanyId }, null)</div>
+                        <div class="col-md-6">
+                            @if (crew.CompanyId >= 0)
+                            {
+                                @Html.ActionLink(crew.Company, "Detail", "Company", new {Id = crew.CompanyId}, null);
+                            }
+                            else
+                            {
+                                @crew.Company
+                            }
+                        </div>
                     </div>
                 </div>
             }

@@ -88,6 +88,4 @@
         });
         return false;
     });
-
-    $(".bs-callout").delay(2000).slideUp(400);
 })

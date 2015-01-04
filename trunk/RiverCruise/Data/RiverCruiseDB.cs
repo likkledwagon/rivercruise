@@ -99,6 +99,12 @@ namespace Data
         {
             var company = Companies.Find(deleteCompanyProxyModel.Id);
 
+            if (company.Ship2Company.Any(x => x.Until == new DateTime(9999, 12, 31)))
+            {
+                throw new Exception("Cannot delete a company that currently has ships.");
+            }
+
+            Ship2Companies.RemoveRange(company.Ship2Company);
             company.Ship2Company.Select(x => x.Ship.Id).ToList().ForEach(DeleteShip);
             Companies.Remove(company);
 

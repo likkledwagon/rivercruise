@@ -84,7 +84,7 @@ namespace RiverCruise.Controllers.Manage
             {
                 Action = "Delete",
                 Arguments = new Dictionary<string, object>() { { "id", id } },
-                Body = "Are you sure you want to delete " + name + " and all it's ships?",
+                Body = "Are you sure you want to delete " + name + "? Make sure there are no ships currently beloning to the company. Companies with active ships cannot be deleted.",
                 Controller = "CompanyManagement",
                 Title = "Confirm"
             };
@@ -111,8 +111,6 @@ namespace RiverCruise.Controllers.Manage
             {
                 return RedirectToAction("Detail", "Company", new { id = id, actionFailed = true });
             }
-
-            
         }
     }
 }
