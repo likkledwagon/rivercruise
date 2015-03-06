@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Web.Mvc;
+using Data.ProxyModel.Advalvas;
 using Data.ProxyModel.Company;
 using Data.ProxyModel.Ship;
 using DataModels;
@@ -28,6 +29,8 @@ namespace Data
         public DbSet<Crew> Crews { get; set; }
 
         public DbSet<Ship2Company> Ship2Companies { get; set; }
+
+        public DbSet<Advalvas> Advalvases { get; set; }
 
         public IEnumerable<dynamic> GetUsers
         {
@@ -92,6 +95,23 @@ namespace Data
             {
                 Name = proxyModel.Name
             });
+            SaveChanges();
+        }
+
+        public void AddAdvalvas(AddAdvalvasModel model)
+        {
+            Advalvases.Add(new Advalvas()
+            {
+                Title = model.Title
+            });
+            SaveChanges();
+        }
+
+        public void RemoveAdvalvas(int id)
+        {
+            var advalvas = Advalvases.Find(id);
+            Advalvases.Remove(advalvas);
+
             SaveChanges();
         }
 

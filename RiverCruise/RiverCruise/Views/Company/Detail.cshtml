@@ -9,7 +9,7 @@
 <div class="container-fluid">
     @if (Roles.IsUserInRole(RoleHelper.Edit))
     {
-        <div class="pull-left">
+        <div class="row">
 
             <div class="dropdown margin">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -32,7 +32,7 @@
                     </li>
                     
                     <li role="presentation">
-                        <a class="triggerModal" data-rc-modalaction="DeleteGet" data-rc-modalcontroller="CompanyManagement" href="#" data-rc-name="@Model.Name" data-rc-id ="@Model.Id">
+                        <a class="triggerModal" data-rc-modalaction="DeleteGet" data-rc-modalcontroller="CompanyManagement" href="#" data-rc-name="@Model.Name" data-rc-id="@Model.Id">
                             <span class="glyphicon glyphicon-trash"></span>
                             Delete
                         </a>
@@ -111,7 +111,7 @@
                             <label>Last report:</label> @ship.LastReport
                         </div>
                         <div>
-                            @Html.ActionLink(ship.Name, "Detail", "Home", new { ship.Id }, null)
+                            @Html.ActionLink(ship.Name, "Detail", "Home", new { ship.Id }, new { @class="tile-blue"})
                         </div>
                     </div>
                     <hr />

@@ -1,4 +1,5 @@
-﻿@model RiverCruise.Models.BasePagingModel
+﻿@using RiverCruise.Models
+@model RiverCruise.Models.BasePagingModel
 
 <div class="container-fluid text-center">
     <nav>
@@ -14,7 +15,7 @@
                 var pagesToShow = new List<int>();
                 int currentPage = Model.CurrentPage;
                 int i = 0;
-                const int totalPageNumbers = 10;
+                const int totalPageNumbers = BasePagingModel.TotalPageNumbers;
                 while (currentPage - i >= 1 && i <= totalPageNumbers / 2)
                 {
                     pagesToShow.Add(currentPage - i);
@@ -43,7 +44,13 @@
 
             @foreach (var page in pagesToShow.OrderBy(q => q))
             {
-                <li class="@(page == Model.CurrentPage ? "active pageBlock": "pageBlock")"><a href="@Url.Action(Model.Action, Model.Controller, new { page = page, searchText = Model.SearchText })">@page<span class="sr-only">(current)</span></a></li>
+                var hiddenOnSmall = page > currentPage +2 || page < currentPage -2 ? "hidden-xs" : string.Empty;
+                
+                <li class="@(page == Model.CurrentPage ? "active pageBlock" : "pageBlock "+hiddenOnSmall)">
+                    <a href="@Url.Action(Model.Action, Model.Controller, new { page = page, searchText = Model.SearchText })">
+                        @page<span class="sr-only">(current)</span>
+                    </a>
+                </li>
             }
 
             @if (Model.CurrentPage < Model.Pages)

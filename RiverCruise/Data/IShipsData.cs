@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data.ProxyModel.Advalvas;
 using Data.ProxyModel.Company;
 using Data.ProxyModel.Ship;
 using DataModels;
@@ -16,6 +17,7 @@ namespace Data
         DbSet<Company> Companies { get; set; }
         DbSet<Report> Reports { get; set; }
         IEnumerable<object> GetUsers { get; }
+        DbSet<Advalvas> Advalvases { get; set; }
 
         new void Dispose();
         int SaveChanges();
@@ -25,5 +27,6 @@ namespace Data
         void AddCompany(NewCompanyProxyModel proxyModel);
         void DeleteCompany(DeleteCompanyProxyModel deleteCompanyProxyModel);
         void ChangeCompay(ChangeCompanyProxyModel toChangeCompanyProxyModel);
+        void AddAdvalvas(AddAdvalvasModel model);
     }
 }

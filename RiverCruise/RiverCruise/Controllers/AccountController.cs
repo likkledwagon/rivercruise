@@ -96,10 +96,7 @@ namespace RiverCruise.Controllers
                         {
                             return RedirectToAction("ChangePassword", "Account", new { passwordChangeSucces = true });
                         }
-                        else
-                        {
-                            ModelState.AddModelError("", "Password change failed. Please re-enter your values and try again.");
-                        }
+                        ModelState.AddModelError("", "Password change failed. Please re-enter your values and try again.");
                     }
                     catch (Exception e)
                     {

@@ -1,9 +1,5 @@
 ﻿big
 ---
-- cleanup company overview model
-- change crew (with history)
-
-- company historiek search?
 - Ship detail (paging : reports)
 - Company Detail (paging : Ships)
 

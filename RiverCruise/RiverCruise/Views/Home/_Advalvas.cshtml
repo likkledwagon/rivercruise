@@ -1,0 +1,20 @@
+﻿@using RiverCruise.Helpers
+@model RiverCruise.Models.Home.AdvalvasModel
+
+<div class="list-group">
+    @foreach (var advalvas in Model.Advalvas)
+    {
+        <span class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-warning-sign pull-right"></span> @advalvas.Title</span>
+    }
+</div>
+
+
+@if(Roles.IsUserInRole(RoleHelper.Edit))
+{
+    <div class="btn-group btn-group-justified">
+        <a class="btn btn-success" href="@Url.Action("Add", "AdvalvasManagement")">
+            <span class="glyphicon glyphicon-plus"></span>
+            New
+        </a>
+    </div>
+}
