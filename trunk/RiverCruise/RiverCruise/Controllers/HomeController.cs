@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Cryptography.X509Certificates;
 using Data;
@@ -6,7 +7,9 @@ using DataModels;
 using RiverCruise.Models;
 using System.Linq;
 using System.Web.Mvc;
+using RiverCruise.Models.Home;
 using RiverCruise.Models.Ship;
+using Advalvas = RiverCruise.Models.Home.Advalvas;
 
 namespace RiverCruise.Controllers
 {
@@ -28,6 +31,22 @@ namespace RiverCruise.Controllers
         }
 
         public ActionResult Index(string searchText, int page = 1, bool shipDeleted = false)
+        {
+            var queryResult = _db.Advalvases;
+
+            var model = new HomeModel() {Advalvas = new AdvalvasModel(queryResult)};
+            var testAdvalvas = new List<Advalvas>()
+            {
+                new Advalvas() {Title = "Title"},
+                new Advalvas() {Title = "Title"},
+                new Advalvas() {Title = "Title"}
+            };
+            model.Advalvas.Advalvas.AddRange(testAdvalvas);
+
+            return View("index", model);
+        }
+
+        public ActionResult Ships(string searchText, int page = 1, bool shipDeleted = false)
         {
             if (page < 1)
             {

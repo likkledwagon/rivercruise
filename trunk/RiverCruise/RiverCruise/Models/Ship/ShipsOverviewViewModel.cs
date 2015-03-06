@@ -18,6 +18,7 @@ namespace RiverCruise.Models.Ship
             
             Initialize(page, totalItems, "Home");
             SearchText = searchText;
+            base.Action = "Ships";
         }
 
         public List<ShipViewModel> ItemsList { get; set; }

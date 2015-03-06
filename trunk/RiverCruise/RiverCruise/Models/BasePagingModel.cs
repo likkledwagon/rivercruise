@@ -17,6 +17,7 @@ namespace RiverCruise.Models
         public int CurrentPage { get; set; }
         public double Pages { get; set; }
         public const int ItemsPerPage = 10;
+        public const int TotalPageNumbers = 10;
 
         public void Initialize(int currentPage, int totalItems, string controller)
         {

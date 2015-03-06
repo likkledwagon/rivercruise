@@ -24,7 +24,6 @@ namespace RiverCruise.Models.Company
 
 
         public int Id { get; set; }
-
         public string Name { get; set; }
         public int Reports { get; set; }
         public string LastReport { get; set; }
