@@ -16,11 +16,11 @@
                     }
                 </div>
             }
-            <div class="advalvas-element">
-                <span class="glyphicon glyphicon-warning-sign pull-left"></span>&nbsp;
-                @advalvas.Title
+            <div>
+                <div class="advalvas-element">
+                    @Html.Raw(advalvas.Title.Replace(Environment.NewLine, "<br/>"))
+                </div>
             </div>
-            <span class="clearfix"></span>
         </div>
     }
 </div>
