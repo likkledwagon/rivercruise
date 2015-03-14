@@ -241,7 +241,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Properties\PublishProfiles\rivercruise %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\rivercruise - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\rivercruise - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
