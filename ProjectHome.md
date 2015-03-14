@@ -1,0 +1,1 @@
+An asp.net mvc application for managing and viewing river cruise ships and their details
