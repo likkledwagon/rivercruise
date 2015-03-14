@@ -1,23 +1,27 @@
 ﻿@using RiverCruise.Helpers
 @model RiverCruise.Models.Home.AdvalvasModel
 
-<div class="list-group">
+<div class="list-group ">
     @foreach (var advalvas in Model.Advalvas)
     {
-        <span class="list-group-item">
-            <span class="glyphicon glyphicon-warning-sign pull-left"></span>&nbsp;
-            @advalvas.Title
+        <div class="list-group-item bs-callout bs-callout-danger">
             @if (Roles.IsUserInRole(RoleHelper.Edit))
-            { 
-                using (Html.BeginForm("Delete", "AdvalvasManagement", FormMethod.Post, new { @Class = "triggerModal pull-right", data_rc_ModalAction = "DeleteGet", data_rc_ModalController = "AdvalvasManagement" }))
-                {
+            {
+                <div>
+                    @using (Html.BeginForm("Delete", "AdvalvasManagement", FormMethod.Post, new { @Class = "triggerModal pull-right", data_rc_ModalAction = "DeleteGet", data_rc_ModalController = "AdvalvasManagement" }))
+                    {
                     @Html.AntiForgeryToken();
                     <input type="hidden" value="@advalvas.Id" name="Id" id="Id" />
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-                }
+                    }
+                </div>
             }
+            <div class="advalvas-element">
+                <span class="glyphicon glyphicon-warning-sign pull-left"></span>&nbsp;
+                @advalvas.Title
+            </div>
             <span class="clearfix"></span>
-        </span>
+        </div>
     }
 </div>
 
