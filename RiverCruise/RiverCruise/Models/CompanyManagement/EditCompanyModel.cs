@@ -11,7 +11,10 @@
             Name = company.Name;
             Id = company.Id;
             CompanyModified = modified;
+            Website = company.Website;
         }
+
+        public string Website { get; set; }
 
         public int Id { get; set; }
 

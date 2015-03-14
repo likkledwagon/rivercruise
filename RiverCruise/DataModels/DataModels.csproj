@@ -49,6 +49,7 @@
     <Compile Include="Advalvas.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Crew.cs" />
+    <Compile Include="FileAttachement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Ship.cs" />

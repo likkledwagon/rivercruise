@@ -32,6 +32,8 @@ namespace Data
 
         public DbSet<Advalvas> Advalvases { get; set; }
 
+        public DbSet<FileAttachement> Attachements { get; set; }
+
         public IEnumerable<dynamic> GetUsers
         {
             get
@@ -86,6 +88,7 @@ namespace Data
         {
             var company = Companies.Find(proxyModel.Id);
             company.Name = proxyModel.Name;
+            company.Website = proxyModel.Website;
             SaveChanges();
         }
 
@@ -93,7 +96,8 @@ namespace Data
         {
             Companies.Add(new Company()
             {
-                Name = proxyModel.Name
+                Name = proxyModel.Name,
+                Website = proxyModel.Website
             });
             SaveChanges();
         }
@@ -113,6 +117,31 @@ namespace Data
             Advalvases.Remove(advalvas);
 
             SaveChanges();
+        }
+
+        public void AddFileToShip(AddFileToShipProxyModel addFileToShipProxyModel)
+        {
+            var ship = Ships.Find(addFileToShipProxyModel.ShipId);
+            ship.Attachements.Add(new FileAttachement()
+            {
+                FileBytes = addFileToShipProxyModel.Bytes,
+                InsetTime = DateTime.Now,
+                Name = addFileToShipProxyModel.FileName,
+                Type = addFileToShipProxyModel.Type
+            });
+
+            SaveChanges();
+        }
+
+        public int DeleteFile(int id)
+        {
+            var file = Attachements.Find(id);
+
+            var shipId = file.Ship.Id;
+            Attachements.Remove(file);
+
+            SaveChanges();
+            return shipId;
         }
 
         public void DeleteCompany(DeleteCompanyProxyModel deleteCompanyProxyModel)

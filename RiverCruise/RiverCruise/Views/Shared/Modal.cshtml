@@ -11,7 +11,11 @@
                 @Model.Body
             </div>
             <div class="modal-footer">
-                @using(Html.BeginForm(Model.Action, Model.Controller, FormMethod.Post))
+                @{
+                    var cssclass = "";
+                }
+
+                @using(Html.BeginForm(Model.Action, Model.Controller, FormMethod.Post, new { @class = cssclass}))
                 {
                     foreach (var argument in Model.Arguments)
                     {

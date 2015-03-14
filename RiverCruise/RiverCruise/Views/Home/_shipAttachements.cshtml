@@ -1,0 +1,53 @@
+﻿@using RiverCruise.Helpers
+@model RiverCruise.Models.Ship.ShipAttachmentsModel
+
+<br />
+@if(User.IsInRole(RoleHelper.Edit))
+{ 
+<div class="container-fluid">
+    <div class="btn btn-success fileinput-button" style="width: 100%; padding: 15px">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files (maximum 50MB)</span>
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </div>
+    <br />
+    <br />
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class="sr-only">0% complete</span>
+        </div>
+    </div>
+    <br />
+    <div class="file_name"></div>
+</div>
+}
+<div id="attachmentList">
+    @Html.Partial("_shipAttachementsList", Model);
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $('#fileupload').fileupload({
+			dataType: 'json',
+			url: '/FileUpload/UploadFiles',
+			autoUpload: true,
+			formData: {id: @Model.Id},
+			done: function (e, data) {
+			    var options = {
+			        url: "@Url.Action("GetShipAttachementsList", "Home", new { Id = Model.Id}, null)",
+			        type: "get"
+			    };
+
+			    $.ajax(options).done(function (data1) {
+			        var target = "#attachmentList";
+	                $(target).html(data1);
+			    });
+			    $('.progress .progress-bar').css('width', 0 + '%');
+			}
+	    }).on('fileuploadprogressall', function (e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			$('.progress .progress-bar').css('width', progress + '%');
+		});
+	});
+</script>

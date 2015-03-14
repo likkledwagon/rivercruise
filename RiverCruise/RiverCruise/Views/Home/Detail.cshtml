@@ -8,6 +8,8 @@
 
 <div class="container-fluid">
     
+    <h2>@Model.Name</h2>
+
     <!-- edit menu -->
     @if (Roles.IsUserInRole(RoleHelper.Edit))
     {
@@ -51,6 +53,7 @@
             <li role="presentation" class="active"><a href="#" id="DetailLink">Detail</a></li>
             <li role="presentation"><a href="#" id="companyHistoryLink">Company History</a></li>
             <li role="presentation"><a href="#" id="historyLink">Crew History</a></li>
+            <li role="presentation"><a href="#" id="attachmentsLink">Attachments</a></li>
         </ul>
     </div><!-- tabs -->
     
@@ -67,8 +70,6 @@
                 </div>
             </div>
         }
-
-        <h2>@Model.Name</h2>
 
         <div class="container-fluid">
             <div>
@@ -109,11 +110,17 @@
             <img src="~/Content/images/loading5.gif" alt="Loading..." />
         </div>
     </div>
+    <div id="attachementPlaceHolder">
+        <div class="text-center">
+            <img src="~/Content/images/loading5.gif" alt="Loading..." />
+        </div>
+    </div>
 </div>
 <script>
     $(document).ready(function() {
         $("#historyPlaceHolder").hide();
         $('#companyHistoryPlaceHolder').hide();
+        $("#attachementPlaceHolder").hide();
     });
 
     $("#historyLink").click(function (e) {
@@ -121,6 +128,7 @@
 
         $("#DetailTabContent").hide();
         $('#companyHistoryPlaceHolder').hide();
+        $("#attachementPlaceHolder").hide();
         $("#historyPlaceHolder").fadeIn();
         $("#historyLink").parent().parent().children().removeClass("active");
         $("#historyLink").parent().addClass("active");
@@ -142,6 +150,7 @@
         e.preventDefault();
         $('#DetailTabContent').hide();
         $('#historyPlaceHolder').hide();
+        $("#attachementPlaceHolder").hide();
         $('#companyHistoryPlaceHolder').fadeIn();
         $("#historyLink").parent().parent().children().removeClass("active");
         $('#companyHistoryLink').parent().addClass("active");
@@ -162,9 +171,32 @@
         e.preventDefault();
         $("#historyPlaceHolder").hide();
         $('#companyHistoryPlaceHolder').hide();
+        $("#attachementPlaceHolder").hide();
         $("#DetailTabContent").fadeIn();
         $("#DetailLink").parent().parent().children().removeClass("active");
         $("#DetailLink").parent().addClass("active");
+        return null;
+    });
+
+    $('#attachmentsLink').click(function(e) {
+        e.preventDefault();
+        $("#historyPlaceHolder").hide();
+        $('#companyHistoryPlaceHolder').hide();
+        $("#attachementPlaceHolder").fadeIn();
+        $("#DetailTabContent").hide();
+        $("#DetailLink").parent().parent().children().removeClass("active");
+        $("#attachmentsLink").parent().addClass("active");
+        
+        var options = {
+            url: "@Url.Action("ShipAttachements", "Home", new { Id = Model.ShipId}, null)",
+            type: "get"
+        };
+
+        $.ajax(options).done(function (data) {
+            var target = "#attachementPlaceHolder";
+            $(target).html(data);
+        });
+
         return null;
     });
 </script>

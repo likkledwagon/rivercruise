@@ -96,6 +96,7 @@
     <Compile Include="ProxyModel\Company\DeleteCompanyProxyModel.cs" />
     <Compile Include="ProxyModel\Company\EditCompanyProxyModel.cs" />
     <Compile Include="ProxyModel\Company\NewCompanyProxyModel.cs" />
+    <Compile Include="ProxyModel\Ship\AddFileToShipProxyModel.cs" />
     <Compile Include="ProxyModel\Ship\ChangeCompanyProxyModel.cs" />
     <Compile Include="ProxyModel\Ship\EditShipProxyModel.cs" />
     <Compile Include="RiverCruiseDB.cs" />

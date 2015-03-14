@@ -10,7 +10,8 @@ namespace RiverCruise.Converters.Company
             return new EditCompanyProxyModel()
             {
                 Id = model.Id,
-                Name = model.Name
+                Name = model.Name,
+                Website = model.Website
             };
         }
 
@@ -18,7 +19,8 @@ namespace RiverCruise.Converters.Company
         {
             return new NewCompanyProxyModel()
             {
-                Name = model.Name
+                Name = model.Name,
+                Website = model.Website
             };
         }
     }

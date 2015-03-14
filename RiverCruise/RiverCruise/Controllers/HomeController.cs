@@ -35,13 +35,6 @@ namespace RiverCruise.Controllers
             var queryResult = _db.Advalvases;
 
             var model = new HomeModel() {Advalvas = new AdvalvasModel(queryResult)};
-            var testAdvalvas = new List<Advalvas>()
-            {
-                new Advalvas() {Title = "Title"},
-                new Advalvas() {Title = "Title"},
-                new Advalvas() {Title = "Title"}
-            };
-            model.Advalvas.Advalvas.AddRange(testAdvalvas);
 
             return View("index", model);
         }
@@ -110,6 +103,42 @@ namespace RiverCruise.Controllers
                 Controller = "Home"
             };
             return PartialView("~/Views/home/_shipCompanyHistory.cshtml", model);
+        }
+
+        public ActionResult ShipAttachements(int id, int page = 1)
+        {
+            var query = _db.Ships.Find(id);
+            if (query == null)
+            {
+                return HttpNotFound();
+            }
+
+            var totalItems = query.Attachements.Count();
+            var model = new ShipAttachmentsModel(query.Attachements, page, totalItems, id)
+            {
+                Action = "GetShipAttachementsList/"+id,
+                Controller = "Home"
+            };
+
+            return PartialView("~/Views/home/_shipAttachements.cshtml", model);
+        }
+
+        public ActionResult GetShipAttachementsList(int id, int page = 1)
+        {
+            var query = _db.Ships.Find(id);
+            if (query == null)
+            {
+                return HttpNotFound();
+            }
+
+            var totalItems = query.Attachements.Count();
+            var model = new ShipAttachmentsModel(query.Attachements, page, totalItems, id)
+            {
+                Action = "GetShipAttachementsList/"+id,
+                Controller = "Home"
+            };
+
+            return PartialView("~/Views/home/_shipAttachementsList.cshtml", model);
         }
     }
 }
