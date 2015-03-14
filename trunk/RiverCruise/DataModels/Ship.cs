@@ -19,5 +19,7 @@ namespace DataModels
         public string Flag { get; set; }
 
         public virtual Collection<Crew> Crew { get; set; }
+
+        public virtual Collection<FileAttachement> Attachements { get; set; }
     }
 }

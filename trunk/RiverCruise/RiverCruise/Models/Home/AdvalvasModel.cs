@@ -14,7 +14,7 @@ namespace RiverCruise.Models.Home
 
         public AdvalvasModel(DbSet<DataModels.Advalvas> queryResult)
         {
-            Advalvas = queryResult.Select(x => new Advalvas(){Title = x.Title}).ToList();
+            Advalvas = queryResult.Select(x => new Advalvas(){Title = x.Title, Id = x.Id}).ToList();
         }
     }
 }

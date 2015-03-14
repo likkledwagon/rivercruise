@@ -51,6 +51,7 @@
                         }
                     </td>
                     <td class="text-right">
+                        
                         @using (Html.BeginForm("Delete", "UserManagement", FormMethod.Post, new { @Class="triggerModal", data_rc_ModalAction ="DeleteGet", data_rc_ModalController="UserManagement"}))
                         {
                             @Html.AntiForgeryToken()

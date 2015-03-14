@@ -23,8 +23,10 @@ namespace RiverCruise.Models.Company
             Reports = company.Reports.Count;
             ShipsVisited = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Count(x => x.Ship.Reports.Any());
             Id = company.Id;
+            Website = company.Website;
         }
 
+        public string Website { get; set; }
         public string Name { get; set; }
         public IEnumerable<CompanyshipsModel> Ships { get; set; }
         [Display(Name = "Nautical crew")]

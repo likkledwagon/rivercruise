@@ -15,6 +15,9 @@ namespace RiverCruise.Models.CompanyManagement
 
         [Required]
         public string Name { get; set; }
+
+        public string Website { get; set; }
+
         public bool CompanyAdded { get; set; }
     }
 }

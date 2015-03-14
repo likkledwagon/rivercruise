@@ -53,7 +53,10 @@
         getPage(senderhref);
     });
 
-    $("form.triggerModal").submit(function (e) {
+    $(".pageContent").on("submit", "form.triggerModal", function (e)
+    {
+
+    //$("form.triggerModal").submit(function (e) {
         e.preventDefault();
         var form = $(this);
 
