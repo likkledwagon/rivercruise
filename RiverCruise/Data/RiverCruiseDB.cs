@@ -89,6 +89,8 @@ namespace Data
             var company = Companies.Find(proxyModel.Id);
             company.Name = proxyModel.Name;
             company.Website = proxyModel.Website;
+            company.CrewingAgent = proxyModel.CrewingAgent;
+            company.CrewingAgentWebsite = proxyModel.CrewingAgentWebsite;
             SaveChanges();
         }
 
@@ -97,7 +99,9 @@ namespace Data
             Companies.Add(new Company()
             {
                 Name = proxyModel.Name,
-                Website = proxyModel.Website
+                Website = proxyModel.Website,
+                CrewingAgent = proxyModel.CrewingAgent,
+                CrewingAgentWebsite = proxyModel.CrewingAgentWebsite
             });
             SaveChanges();
         }

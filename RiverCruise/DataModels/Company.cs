@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace DataModels
 {
@@ -21,5 +16,7 @@ namespace DataModels
 
         public virtual Collection<Ship2Company> Ship2Company { get; set; }
         public virtual Collection<Report> Reports { get; set; }
+        public string CrewingAgent { get; set; }
+        public string CrewingAgentWebsite { get; set; }
     }
 }

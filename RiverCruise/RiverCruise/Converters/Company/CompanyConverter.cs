@@ -11,7 +11,9 @@ namespace RiverCruise.Converters.Company
             {
                 Id = model.Id,
                 Name = model.Name,
-                Website = model.Website
+                Website = model.Website,
+                CrewingAgent = model.CrewingAgent,
+                CrewingAgentWebsite = model.CrewingAgentWebsite
             };
         }
 
@@ -20,7 +22,9 @@ namespace RiverCruise.Converters.Company
             return new NewCompanyProxyModel()
             {
                 Name = model.Name,
-                Website = model.Website
+                Website = model.Website,
+                CrewingAgent = model.CrewingAgent,
+                CrewingAgentWebsite = model.CrewingAgentWebsite
             };
         }
     }

@@ -97,6 +97,17 @@
                         <br />
                         @Html.LabelFor(model => model.TotalCrew):
                         @Model.TotalCrew
+                        <br/>
+                        @Html.LabelFor(model => model.CrewingAgent):
+                        @if (!string.IsNullOrEmpty(Model.CrewingagentWebsite))
+                        {
+                            <a href="@Model.CrewingagentWebsite">@Model.CrewingAgent</a>
+                        }
+                        else
+                        {
+                            @Model.CrewingAgent
+                        }
+                        <br/>
                     </div>
                 </div>
             </div>

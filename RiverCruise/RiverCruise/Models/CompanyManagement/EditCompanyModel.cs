@@ -1,4 +1,6 @@
-﻿namespace RiverCruise.Models.CompanyManagement
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RiverCruise.Models.CompanyManagement
 {
     public class EditCompanyModel
     {
@@ -12,7 +14,15 @@
             Id = company.Id;
             CompanyModified = modified;
             Website = company.Website;
+            CrewingAgent = company.CrewingAgent;
+            CrewingAgentWebsite = company.CrewingAgentWebsite;
         }
+
+        [Display(Name = "Crewing agent website")]
+        public string CrewingAgentWebsite { get; set; }
+
+        [Display(Name = "Crewing agent")]
+        public string CrewingAgent { get; set; }
 
         public string Website { get; set; }
 

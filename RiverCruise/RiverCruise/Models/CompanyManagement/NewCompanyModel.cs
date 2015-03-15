@@ -19,5 +19,11 @@ namespace RiverCruise.Models.CompanyManagement
         public string Website { get; set; }
 
         public bool CompanyAdded { get; set; }
+
+        [Display(Name = "Crewing agent")]
+        public string CrewingAgent { get; set; }
+
+        [Display(Name = "Crewing agent website")]
+        public string CrewingAgentWebsite { get; set; }
     }
 }
