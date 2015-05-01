@@ -10,10 +10,10 @@ namespace RiverCruise.Models.Ship
             Name = ship.Name;
             Id = ship.Id;
             Region = ship.Region;
-            var company = ship.Ship2Company;
+            Eni = ship.Eni;
             Company = ship.Ship2Company.First(x => (x.From < DateTime.Now) && (DateTime.Now <= x.Until)).Company.Name;
             CompanyId = ship.Ship2Company.First(x => (x.From < DateTime.Now) && (DateTime.Now <= x.Until)).Company.Id;
-            ShipReportViewModel = new ShipReportViewModel(ship.Reports.ToList());
+            ShipReportViewModel = new ShipReportViewModel(ship.Reports);
         }
 
         public string Region { get; set; }
@@ -24,7 +24,10 @@ namespace RiverCruise.Models.Ship
 
         public string Company { get; set; }
 
+        public string Eni { get; set; }
+
         public ShipReportViewModel ShipReportViewModel { get; set; }
+
         public int CompanyId { get; set; }
     }
 }

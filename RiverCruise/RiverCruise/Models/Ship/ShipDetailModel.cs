@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using RiverCruise.Models.Report;
 
 namespace RiverCruise.Models.Ship
 {
@@ -26,15 +24,14 @@ namespace RiverCruise.Models.Ship
             Region = ship.Region;
             Name = ship.Name;
             ShipId = ship.Id;
-
-            Reports = ship.Reports.Select(x => new ShipDetailReportViewModel(x)).ToList();
+            Remark = ship.Remark;
         }
+
+        public string Remark { get; set; }
 
         public int ShipId { get; set; }
 
         public string Name { get; set; }
-
-        public List<ShipDetailReportViewModel> Reports { get; set; }
 
         [Display(Name="Company")]
         public string CompanyName { get; set; }

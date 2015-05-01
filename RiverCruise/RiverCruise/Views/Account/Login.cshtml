@@ -31,7 +31,17 @@
                     @Html.LabelFor(model => model.Password)
                     @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
                     <span class="text-danger">@Html.ValidationMessageFor(model => model.Password)</span>
-                <br />
+                    <br />
+                </div>
+                
+                <div class="bs-callout bs-callout-danger" style="padding: 15px;">
+                    @Html.CheckBoxFor(model => model.AgreeToTerms)
+                    I have read and agree to the:
+                    
+                        <a href="~/Content/Documents/20150324.  ETF River Cruise Vessels Database. ACCEPTABLE USE POLICY.doc">ACCEPTABLE USE POLICY</a> , 
+                        <a href="~/Content/Documents/20150324.  ETF River Cruise Vessels Database. PRIVACY POLICY.doc">PRIVACY POLICY</a> and the 
+                        <a href="~/Content/Documents/20150324.  ETF River Cruise Vessels Database. TERMS OF USE.doc">TERMS OF USE</a>
+                    
                 </div>
 
                 <div class="form-group text-center">

@@ -1,31 +1,59 @@
-﻿@model RiverCruise.Models.Ship.ShipHistoryModel
-<div class="pagerTarget">
+﻿@using RiverCruise.Helpers
+@model RiverCruise.Models.Ship.ShipReportsModel
+<div id="pagerTarget">
     
-    @if (Model.Crew.Any())
+    @if (User.IsInRole(RoleHelper.Edit))
+    {
+        <br/>
+        <div class="row" style="padding-left: 30px; padding-right: 30px;">
+            <div class="btn-group btn-group-justified">
+                <a class="btn btn-success" href="@Url.Action("AddReport", "ShipManagement", new {Id = Model.ShipId})" style="padding: 15px;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add Report
+                </a>
+            </div>
+        </div>
+    }
+    <hr/>
+    @if (Model.Reports.Any())
     {
 
         @Html.Partial("_Paging", Model)
 
         <div>
-            @foreach (var crew in Model.Crew)
+            @foreach (var report in Model.Reports)
             {
                 <hr />
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-9">
-                            @Html.LabelFor(model => crew.HotelStaff)
-                            @crew.HotelStaff
+                        <div class="col-xs-10">
+                            @Html.LabelFor(model => report.DateOfVisit)
+                            @string.Format(report.DateOfVisit.ToString("MM/dd/yyyy"))
                             <br/>
-                            @Html.LabelFor(model => crew.NauticalCrew)
-                            @crew.NauticalCrew
-                            <br/>
-                            @Html.LabelFor(model => crew.TotalCrew)
-                            @crew.TotalCrew
+                            @Html.LabelFor(model => report.Port)
+                            @report.Port
                         </div>
-                        <div class="col-md-3">@crew.From - @crew.Until</div>
+                        <div class="col-xs-1 text-right">
+                            <a class="btn btn-warning" href="@Url.Action("DownloadReport", "Home", new { report.Id})">
+                                <span class="glyphicon glyphicon-floppy-save" style="font-size: 1.5em; margin:5px;"></span>
+                            </a>
+                        </div>
+                    @if (User.IsInRole(RoleHelper.Edit))
+                    {
+                        <div class="col-xs-1">
+                            @using (Html.BeginForm("RemoveReport", "ShipManagement", FormMethod.Post, new {data_rc_modalaction = "RemoveReportGet", data_rc_modalcontroller = "ShipManagement", @class = "triggerModal"}))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" value="@report.Id" name="id" id="id" />
+                                <input type="hidden" value="@Model.ShipId" name="shipId" id="shipId" />
+                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" style="font-size: 1.5em; margin: 5px;"></span></button>
+                            }
+                        </div>
+                    }
                     </div>
                 </div>
             }
+            <hr/>
         </div>
 
         @Html.Partial("_Paging", Model)
@@ -36,7 +64,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="bs-callout bs-callout-warning text-warning">
                     <ul>
-                        <li>No history available</li>
+                        <li>No reports available</li>
                     </ul>
                 </div>
             </div>

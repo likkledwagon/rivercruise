@@ -26,7 +26,7 @@ namespace RiverCruise.Controllers
         [AllowAnonymous]
         public ActionResult Login(User model, string returnUrl)
         {
-            if (string.IsNullOrEmpty(model.UserName) || string.IsNullOrEmpty(model.Password))
+            if (string.IsNullOrEmpty(model.UserName) || string.IsNullOrEmpty(model.Password) || !model.AgreeToTerms)
             {
                 if (string.IsNullOrEmpty(model.UserName))
                 { 
@@ -35,6 +35,10 @@ namespace RiverCruise.Controllers
                 if (string.IsNullOrEmpty(model.Password))
                 {
                     ModelState.AddModelError("PassWord", "Password cannot be empty");
+                }
+                if (!model.AgreeToTerms)
+                {
+                    ModelState.AddModelError("AgreeToTerms","You must agree to the acceptatble use policy, privacy policy and terms of use.");
                 }
 
                 return View(model);

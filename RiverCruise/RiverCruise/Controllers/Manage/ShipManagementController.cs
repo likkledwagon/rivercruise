@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Data.ProxyModel.Ship;
 using RiverCruise.Converters.Ship;
+using RiverCruise.Helpers;
 using RiverCruise.Models.Shared;
 using RiverCruise.Models.Ship;
 using RiverCruise.Models.ShipManagement;
@@ -160,6 +164,63 @@ namespace RiverCruise.Controllers.Manage
                 .Select(r => new {label = r.Name});
 
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AddReport(int id)
+        {
+            return View("AddReport", new AddReportViewModel(id));
+        }
+
+        [HttpPost]
+        public ActionResult AddReport(AddReportViewModel report)
+        {
+            if(ModelState.IsValid)
+            { 
+                if (report != null && report.File!= null && report.File.ContentLength > 0)
+                {
+                    var addreportProxyModel = AddReportHelper.CreatetProxyModel(report);
+
+                    try
+                    {
+                        _db.AddReport(addreportProxyModel);
+                        return RedirectToAction("Detail", "Home", new {report.Id});
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError("File", "Something went wrong uploading while trying to add the report, please try again.");
+                    }
+                }
+            }
+            
+            return View("AddReport", report);
+        }
+
+        public ActionResult RemoveReportGet(int id, int shipId)
+        {
+            var modalModel = new ModalModel()
+            {
+                Action = "RemoveReport",
+                Arguments = new Dictionary<string, object>() { { "id", id }, {"shipId", shipId} },
+                Body = "Are you sure you want to delete this report?",
+                Controller = "ShipManagement",
+                Title = "Confirm"
+            };
+
+            return PartialView("Modal", modalModel);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveReport(int id, int shipId)
+        {
+            try
+            {
+                _db.RemoveReport(id);
+                return RedirectToAction("Detail", "Home", new { Id = shipId });
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Detail", "Home", new { Id = shipId });
+            }
         }
     }
 }

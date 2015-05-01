@@ -91,6 +91,10 @@ h4 {
     color: #aaa;
 }
 
+select option {
+    height: 100px;
+}
+
 .h4content {
     display: block;
     padding-top: 10px;
@@ -180,4 +184,24 @@ footer {
     margin-top: 7px;
     margin-bottom: 17px;
     color: #d9534f;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

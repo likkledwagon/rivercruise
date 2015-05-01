@@ -52,7 +52,7 @@
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#" id="DetailLink">Detail</a></li>
             <li role="presentation"><a href="#" id="companyHistoryLink">Company History</a></li>
-            <li role="presentation"><a href="#" id="historyLink">Crew History</a></li>
+            <li role="presentation"><a href="#" id="reportsLink">Reports</a></li>
             <li role="presentation"><a href="#" id="attachmentsLink">Attachments</a></li>
         </ul>
     </div><!-- tabs -->
@@ -84,23 +84,12 @@
                     Hotel staff : <strong>@Model.HotelStaff</strong><br />
                     Total crew : <strong>@(Model.TotalCrew)</strong>
                 </div>
-                <br />
-                <h4>Reports</h4>
-                <div class="container-fluid">
-
-                    @foreach (var report in Model.Reports)
-                    {
-                        <span class="pull-right"><em>@report.Date</em></span><strong>@report.Ref</strong><br />
-                        @report.Remarks
-                        <hr />
-                    }
-                </div>
             </div>
         </div>
     </div>
     
 
-    <div id="historyPlaceHolder">
+    <div id="reportsPlaceHolder">
         <div class="text-center">
             <img src="~/Content/images/loading5.gif" alt="Loading..." />
         </div>
@@ -118,28 +107,28 @@
 </div>
 <script>
     $(document).ready(function() {
-        $("#historyPlaceHolder").hide();
+        $("#reportsPlaceHolder").hide();
         $('#companyHistoryPlaceHolder').hide();
         $("#attachementPlaceHolder").hide();
     });
 
-    $("#historyLink").click(function (e) {
+    $("#reportsLink").click(function (e) {
         e.preventDefault();
 
         $("#DetailTabContent").hide();
         $('#companyHistoryPlaceHolder').hide();
         $("#attachementPlaceHolder").hide();
-        $("#historyPlaceHolder").fadeIn();
-        $("#historyLink").parent().parent().children().removeClass("active");
-        $("#historyLink").parent().addClass("active");
+        $("#reportsPlaceHolder").fadeIn();
+        $("#reportsLink").parent().parent().children().removeClass("active");
+        $("#reportsLink").parent().addClass("active");
 
         var options = {
-            url: "@Url.Action("ShipHistory", "Home", new { Id = Model.ShipId}, null)",
+            url: "@Url.Action("ShipReports", "Home", new { Id = Model.ShipId}, null)",
             type: "get"
         };
 
         $.ajax(options).done(function (data) {
-            var target = "#historyPlaceHolder";
+            var target = "#reportsPlaceHolder";
             $(target).html(data);
         });
 
@@ -149,10 +138,10 @@
     $('#companyHistoryLink').click(function (e) {
         e.preventDefault();
         $('#DetailTabContent').hide();
-        $('#historyPlaceHolder').hide();
+        $('#reportsPlaceHolder').hide();
         $("#attachementPlaceHolder").hide();
         $('#companyHistoryPlaceHolder').fadeIn();
-        $("#historyLink").parent().parent().children().removeClass("active");
+        $("#reportsLink").parent().parent().children().removeClass("active");
         $('#companyHistoryLink').parent().addClass("active");
         var options = {
             url: "@Url.Action("ShipCompanyHistory", "Home", new { Id = Model.ShipId}, null)",
@@ -169,7 +158,7 @@
 
     $("#DetailLink").click(function (e) {
         e.preventDefault();
-        $("#historyPlaceHolder").hide();
+        $("#reportsPlaceHolder").hide();
         $('#companyHistoryPlaceHolder').hide();
         $("#attachementPlaceHolder").hide();
         $("#DetailTabContent").fadeIn();
@@ -180,7 +169,7 @@
 
     $('#attachmentsLink').click(function(e) {
         e.preventDefault();
-        $("#historyPlaceHolder").hide();
+        $("#reportsPlaceHolder").hide();
         $('#companyHistoryPlaceHolder').hide();
         $("#attachementPlaceHolder").fadeIn();
         $("#DetailTabContent").hide();

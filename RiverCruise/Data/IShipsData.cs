@@ -15,10 +15,10 @@ namespace Data
     {
         DbSet<Ship> Ships { get; set; }
         DbSet<Company> Companies { get; set; }
-        DbSet<Report> Reports { get; set; }
         IEnumerable<object> GetUsers { get; }
         DbSet<Advalvas> Advalvases { get; set; }
         DbSet<FileAttachement> Attachements { get; set; }
+        DbSet<Report> Reports { get; set; }
 
         new void Dispose();
         int SaveChanges();
@@ -31,12 +31,8 @@ namespace Data
         void AddAdvalvas(AddAdvalvasModel model);
         void RemoveAdvalvas(int id);
         void AddFileToShip(AddFileToShipProxyModel addFileToShipProxyModel);
-
-        /// <summary>
-        /// Deletes a file by id
-        /// </summary>
-        /// <param name="id">Id of the file</param>
-        /// <returns>Id of ship file belonged to</returns>
         int DeleteFile(int id);
+        void AddReport(AddReportProxyModel addreportProxyModel);
+        void RemoveReport(int id);
     }
 }

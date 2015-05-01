@@ -1,4 +1,6 @@
-﻿@model RiverCruise.Models.Ship.ShipsOverviewViewModel
+﻿@using System
+@using RiverCruise.Helpers
+@model RiverCruise.Models.Ship.ShipsOverviewViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,6 +10,14 @@
     
     <!--searchform-->
     <div class="pull-right">
+        @{
+            var listItems = new List<SelectListItem>()
+                    {
+                        new SelectListItem() {Selected = true, Text = "Name", Value = RiverCruise.Helpers.SearchOption.Name.ToString()},
+                        new SelectListItem() {Selected = false, Text = "Eni", Value = RiverCruise.Helpers.SearchOption.Eni.ToString()}
+                    };
+        }
+
         @using (Ajax.BeginForm(null, null, new AjaxOptions()
         {
             HttpMethod = "get",
@@ -16,6 +26,8 @@
         },
             new { @class="navbar-form"}))
         {
+            @Html.DropDownList("searchType", listItems, new { @class = "form-control" })
+
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search" name="searchText" id="searchText" data-otf-autocomplete="@Url.Action("AutoComplete", "Home")" data-autocomplete-submit="true">
                 <div class="input-group-btn">

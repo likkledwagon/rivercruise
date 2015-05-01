@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Security.Cryptography.X509Certificates;
-using Data;
-using DataModels;
-using RiverCruise.Models;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using RiverCruise.Models.Home;
 using RiverCruise.Models.Ship;
-using Advalvas = RiverCruise.Models.Home.Advalvas;
+using SearchOption = RiverCruise.Helpers.SearchOption;
 
 namespace RiverCruise.Controllers
 {
@@ -39,7 +34,7 @@ namespace RiverCruise.Controllers
             return View("index", model);
         }
 
-        public ActionResult Ships(string searchText, int page = 1, bool shipDeleted = false)
+        public ActionResult Ships(string searchText, Helpers.SearchOption searchType = SearchOption.Name, int page = 1, bool shipDeleted = false)
         {
             if (page < 1)
             {
@@ -47,7 +42,7 @@ namespace RiverCruise.Controllers
             }
 
             var totalShips = _db.Ships.Count(w => searchText == null || w.Name.Contains(searchText));
-            var shipsModel = new ShipsOverviewViewModel(_db.Ships, page, totalShips, searchText);
+            var shipsModel = new ShipsOverviewViewModel(_db.Ships, page, totalShips, searchText, searchType);
 
             if (Request.IsAjaxRequest())
             {
@@ -73,7 +68,7 @@ namespace RiverCruise.Controllers
             return View(new ShipDetailModel(queryResult, deleteFailed));
         }
 
-        public ActionResult ShipHistory(int id, int page = 1)
+        public ActionResult ShipReports(int id, int page = 1)
         {
             var query = _db.Ships.Find(id);
             if (query == null)
@@ -81,9 +76,13 @@ namespace RiverCruise.Controllers
                 return HttpNotFound();
             }
 
-            var totalItems = _db.Ships.Find(id).Crew.Count(x => x.Until < DateTime.Now);
+            var totalItems = _db.Ships.Find(id).Reports.Count();
 
-            var model = new ShipHistoryModel(query.Crew.Where(x => x.Until < DateTime.Now), page, totalItems);
+            var model = new ShipReportsModel(query.Reports, page, totalItems, id)
+            {
+                Action = "ShipReports",
+                Controller = "Home"
+            };
 
             return PartialView("~/Views/home/_shipHistory.cshtml", model);
         }
@@ -139,6 +138,17 @@ namespace RiverCruise.Controllers
             };
 
             return PartialView("~/Views/home/_shipAttachementsList.cshtml", model);
+        }
+
+        public ActionResult DownloadReport(int id)
+        {
+            var file = _db.Reports.Find(id);
+            byte[] byteInfo = file.File;
+            var ms = new MemoryStream();
+            ms.Write(byteInfo, 0, byteInfo.Length);
+            ms.Position = 0;
+
+            return new FileStreamResult(ms, file.Type);
         }
     }
 }

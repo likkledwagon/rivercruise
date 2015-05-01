@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Web.Mvc;
@@ -60,9 +61,11 @@ namespace Data
 
         public void DeleteShip(int id)
         {
-            var ship = Ships.First(x => x.Id == id);
+            var ship = Ships.Single(x => x.Id == id);
             Ship2Companies.RemoveRange(Ship2Companies.Where(x => x.Ship.Id.Equals(id)));
             Crews.RemoveRange(Crews.Where(x => x.Ship.Id.Equals(id)));
+            Attachements.RemoveRange(Attachements.Where(x => x.Ship.Id.Equals(id)));
+            Reports.RemoveRange(Reports.Where(x => x.Ship.Id.Equals(id)));
             Ships.Remove(ship);
             SaveChanges();
         }
@@ -146,6 +149,29 @@ namespace Data
 
             SaveChanges();
             return shipId;
+        }
+
+        public void AddReport(AddReportProxyModel addreportProxyModel)
+        {
+            var ship = Ships.Single(x => x.Id == addreportProxyModel.ShipId);
+            Reports.Add(new Report()
+            {
+                Date = addreportProxyModel.DateOfVisit,
+                Ship = ship,
+                Port = addreportProxyModel.Port,
+                File = addreportProxyModel.Report.Content,
+                Name = addreportProxyModel.Report.Name,
+                Type = addreportProxyModel.Report.Type,
+                InsertTime = DateTime.Now
+            });
+
+            SaveChanges();
+        }
+
+        public void RemoveReport(int id)
+        {
+            Reports.Remove(Reports.First(x => x.Id == id));
+            SaveChanges();
         }
 
         public void DeleteCompany(DeleteCompanyProxyModel deleteCompanyProxyModel)

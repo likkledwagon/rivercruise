@@ -135,14 +135,15 @@
     <Compile Include="Controllers\Manage\CompanyManagementController.cs" />
     <Compile Include="Controllers\Manage\ShipManagementController.cs" />
     <Compile Include="Controllers\Manage\UserManagementController.cs" />
-    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Converters\Company\CompanyConverter.cs" />
     <Compile Include="Converters\Ship\ShipConverter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AddReportHelper.cs" />
     <Compile Include="Helpers\FileUploadHelper.cs" />
     <Compile Include="Helpers\RoleHelper.cs" />
+    <Compile Include="Helpers\SearchOption.cs" />
     <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\User.cs" />
     <Compile Include="Models\Advalvas\AddAdvalvasModel.cs" />
@@ -157,9 +158,9 @@
     <Compile Include="Models\Home\Advalvas.cs" />
     <Compile Include="Models\Home\AdvalvasModel.cs" />
     <Compile Include="Models\Home\HomeModel.cs" />
-    <Compile Include="Models\Report\ReportsViewModel.cs" />
     <Compile Include="Models\Shared\ModalModel.cs" />
     <Compile Include="Models\Shared\ValidationResult.cs" />
+    <Compile Include="Models\ShipManagement\AddReportViewModel.cs" />
     <Compile Include="Models\ShipManagement\ChangeCompanymodel.cs" />
     <Compile Include="Models\ShipManagement\ChangeCompanyNewCompanyOptionModel.cs" />
     <Compile Include="Models\ShipManagement\EditShipViewModel.cs" />
@@ -169,8 +170,7 @@
     <Compile Include="Models\Ship\ShipAttachmentsModel.cs" />
     <Compile Include="Models\Ship\ShipCompanyHistoryModel.cs" />
     <Compile Include="Models\Ship\ShipDetailModel.cs" />
-    <Compile Include="Models\Ship\ShipDetailReportViewModel.cs" />
-    <Compile Include="Models\Ship\ShipHistoryModel.cs" />
+    <Compile Include="Models\Ship\ShipReportsModel.cs" />
     <Compile Include="Models\Ship\ShipReportViewModel.cs" />
     <Compile Include="Models\Ship\ShipsOverviewViewModel.cs" />
     <Compile Include="Models\Ship\ShipViewModel.cs" />
@@ -241,6 +241,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\Documents\20150324.  ETF River Cruise Vessels Database. ACCEPTABLE USE POLICY.doc" />
+    <Content Include="Content\Documents\20150324.  ETF River Cruise Vessels Database. PRIVACY POLICY.doc" />
+    <Content Include="Content\Documents\20150324.  ETF River Cruise Vessels Database. TERMS OF USE.doc" />
     <None Include="Properties\PublishProfiles\rivercruise - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\rivercruise - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
@@ -317,6 +320,7 @@
     <Content Include="Views\AdvalvasManagement\Add.cshtml" />
     <Content Include="Views\Home\_shipAttachements.cshtml" />
     <Content Include="Views\Home\_shipAttachementsList.cshtml" />
+    <Content Include="Views\ShipManagement\AddReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RiverCruise.Models.Company
 {
@@ -20,7 +21,7 @@ namespace RiverCruise.Models.Company
             HotelStaff = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until))
                 .SelectMany(z => z.Ship.Crew).Where(c => c.From < DateTime.Now && c.Until >= DateTime.Now)
                 .Sum(x => x.HotelStaff != null ? x.HotelStaff.Value : 0);
-            Reports = company.Reports.Count;
+            Reports = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).SelectMany(q => q.Ship.Reports).Count();
             ShipsVisited = company.Ship2Company.Where(y => (y.From < DateTime.Now) && (DateTime.Now <= y.Until)).Count(x => x.Ship.Reports.Any());
             Id = company.Id;
             Website = company.Website;
@@ -61,7 +62,7 @@ namespace RiverCruise.Models.Company
                 {
                     return "0";
                 }
-                return (Math.Round((double) Ships.Count()/ShipsVisited)*100).ToString(CultureInfo.InvariantCulture);
+                return (Math.Round(((double)ShipsVisited / Ships.Count()) * 100)).ToString(CultureInfo.InvariantCulture);
             }
         }
 
@@ -100,7 +101,7 @@ namespace RiverCruise.Models.Company
             {
                 if (Ships.Any())
                 {
-                    return Math.Round((double) Reports/Ships.Count()).ToString(CultureInfo.InvariantCulture);
+                    return Math.Round((double) Reports/Ships.Count(), 2).ToString(CultureInfo.InvariantCulture);
                 }
 
                 return "0";

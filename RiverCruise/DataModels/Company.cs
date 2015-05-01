@@ -15,7 +15,6 @@ namespace DataModels
         public string Website { get; set; }
 
         public virtual Collection<Ship2Company> Ship2Company { get; set; }
-        public virtual Collection<Report> Reports { get; set; }
         public string CrewingAgent { get; set; }
         public string CrewingAgentWebsite { get; set; }
     }

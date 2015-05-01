@@ -9,5 +9,6 @@ namespace RiverCruise.Models.Account
 
         public string Password { get; set; }
         public string ReturnUrl { get; set; }
+        public bool AgreeToTerms { get; set; }
     }
 }

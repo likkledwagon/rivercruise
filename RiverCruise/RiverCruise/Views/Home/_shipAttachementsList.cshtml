@@ -13,9 +13,14 @@
             {
                 <hr />
                 <div class="container-fluid">
-                    <div class="col-md-1"><a href="@Url.Action("DownloadFile", "FileUpload", new { attachment.Id }, null)" target="_blank"><img src="~/Content/images/File.png" alt="file" /></a></div>
                     <div class="col-md-5">@Html.DisplayFor(model => attachment.Name)</div>
                     <div class="col-md-5">@Html.DisplayFor(model => attachment.Date)</div>
+                    
+                    <div class="col-md-1">
+                        <a href="@Url.Action("DownloadFile", "FileUpload", new { attachment.Id }, null)" target="_blank" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-floppy-save" style="font-size: 1.5em; margin:5px;"></span>
+                        </a>
+                    </div>
 
                     @if (User.IsInRole(RoleHelper.Edit))
                     {
@@ -24,7 +29,7 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" value="@attachment.Id" name="id" id="id" />
-                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" style="font-size: 1.5em; margin: 5px;"></span></button>
                             }
 
                         </div>
