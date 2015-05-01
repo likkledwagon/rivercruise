@@ -77,6 +77,7 @@ namespace Data
             ship.Eni = dataShip.Eni;
             ship.Flag = dataShip.Flag;
             ship.Region = dataShip.Region;
+            ship.Remark = dataShip.Remark;
             var crew = ship.Crew.Single(x => x.From < DateTime.Now && x.Until >= DateTime.Now);
             crew.HotelStaff = dataShip.HotelStaff;
             crew.NauticalCrew = dataShip.NauticalCrew;

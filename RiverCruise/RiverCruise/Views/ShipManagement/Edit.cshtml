@@ -1,4 +1,5 @@
-﻿@model RiverCruise.Models.ShipManagement.EditShipViewModel
+﻿@using System.Web.UI.WebControls
+@model RiverCruise.Models.ShipManagement.EditShipViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -98,6 +99,15 @@
         </div>
 
         <br />
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                @Html.TextAreaFor(model => model.Remark, new {@class="form-control", placeHolder = "Remarks"})
+            </div>
+        </div>
+        
+        <br/>
+
         <div class="form-group">
             <div class="col-sm-2 ">
                 <span>@Html.ActionLink("Back to detail", "Detail", "Home", new { Id = Model.Id }, new { @class = "btn btn-block btn-warning" })</span>
@@ -106,6 +116,8 @@
                 <button type="submit" class="btn btn-primary form-control">Edit</button>
             </div>
         </div>
+        
+        <br/>
     }
 
 </div>

@@ -43,6 +43,7 @@ namespace RiverCruise.Converters.Ship
                             Flag = newShipViewModel.Flag,
                             Name = newShipViewModel.Name,
                             Region = newShipViewModel.Region,
+                            Remark = newShipViewModel.Remark
                         }
                     };
 
@@ -70,7 +71,8 @@ namespace RiverCruise.Converters.Ship
                 Region = editShipViewModel.Region,
                 NauticalCrew = editShipViewModel.NauticalCrew,
                 HotelStaff = editShipViewModel.HotselStaff,
-                Since = editShipViewModel.Since
+                Since = editShipViewModel.Since,
+                Remark = editShipViewModel.Remark
             };
         }
     }

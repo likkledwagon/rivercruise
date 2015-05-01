@@ -12,5 +12,6 @@ namespace Data.ProxyModel.Ship
         public int? HotelStaff { get; set; }
         public int? NauticalCrew { get; set; }
         public DateTime Since { get; set; }
+        public string Remark { get; set; }
     }
 }

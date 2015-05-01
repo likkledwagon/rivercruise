@@ -18,6 +18,7 @@ namespace RiverCruise.Models.ShipManagement
             Eni = queryResult.Eni;
             Flag = queryResult.Flag;
             Region = queryResult.Region;
+            Remark = queryResult.Remark;
             var crew = queryResult.Crew.FirstOrDefault(x => x.From < DateTime.Now && x.Until >= DateTime.Now);
             if (crew != null)
             { 

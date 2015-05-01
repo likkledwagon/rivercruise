@@ -28,5 +28,7 @@ namespace RiverCruise.Models.ShipManagement
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Since { get; set; }
+
+        public string Remark { get; set; }
     }
 }
