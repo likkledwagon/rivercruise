@@ -36,6 +36,14 @@ namespace RiverCruise.Models.Company
         
         public string Website { get; set; }
 
+        public string DisplayWebsite { get
+            {
+                string website = Website;
+                if (!website.StartsWith("http://")) website = "http://" + website;
+                return website;
+            }
+        }
+
         public string Name { get; set; }
 
         public IEnumerable<CompanyshipsModel> Ships { get; set; }

@@ -78,11 +78,14 @@
 
                     Company : <strong>@Html.ActionLink(Model.CompanyName, "Detail", "Company", new { Id = Model.CompanyId }, null) </strong><br />
                     ENI : <strong>@(Model.Eni)</strong><br />
+                    MMSI : <strong>@(Model.MmsiNummer)</strong><br />
                     Flag : <strong>@Model.Flag</strong><br />
                     Region : <strong>@Model.Region</strong><br />
                     Nautical crew : <strong>@Model.NauticalCrew</strong><br />
                     Hotel staff : <strong>@Model.HotelStaff</strong><br />
                     Total crew : <strong>@(Model.TotalCrew)</strong><br/>
+                    Passenger amount : <strong>@(Model.AantalPassagiers)</strong><br/>
+                    <br/>
                     Remark: 
                     <textarea class="form-control disabled pull-right" disabled="disabled" style="height: 10em; width:90%;">@Model.Remark</textarea>
                 </div>

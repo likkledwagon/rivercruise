@@ -24,5 +24,10 @@ namespace DataModels
         public virtual Collection<FileAttachement> Attachements { get; set; }
 
         public virtual Collection<Report> Reports { get; set; }
+
+        public virtual int AantalPassagiers { get; set; }
+
+        [StringLength(9)]
+        public virtual string MmsiNummer { get; set; }
     }
 }

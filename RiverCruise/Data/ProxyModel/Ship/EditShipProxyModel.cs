@@ -13,5 +13,7 @@ namespace Data.ProxyModel.Ship
         public int? NauticalCrew { get; set; }
         public DateTime Since { get; set; }
         public string Remark { get; set; }
+        public string MmsiNummer { get; set; }
+        public int AantalPassagiers { get; set; }
     }
 }

@@ -25,7 +25,15 @@ namespace RiverCruise.Models.Ship
             Name = ship.Name;
             ShipId = ship.Id;
             Remark = ship.Remark;
+            MmsiNummer = ship.MmsiNummer;
+            AantalPassagiers = ship.AantalPassagiers;
         }
+
+        [Display(Name="Aantal passagiers")]
+        public int AantalPassagiers { get; set; }
+
+        [Display(Name="MMSI number")]
+        public string MmsiNummer { get; set; }
 
         public string Remark { get; set; }
 

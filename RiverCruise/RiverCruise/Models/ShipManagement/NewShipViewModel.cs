@@ -13,8 +13,15 @@ namespace RiverCruise.Models.ShipManagement
         public string Name { get; set; }
         public string Eni { get; set; }
 
+        [Display(Name = "MMSI number")]
+        [StringLength(9)]
+        public string MmsiNummer { get; set; }
+
         [Display(Name = "Nautical crew")]
         public int NauticalCrew { get; set; }
+
+        [Display(Name = "Passenger amount")]
+        public int AantalPassagiers { get; set; }
 
         [Display(Name="Hotel staff")]
         public int HotselStaff { get; set; }

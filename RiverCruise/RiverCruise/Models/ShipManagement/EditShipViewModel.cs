@@ -19,6 +19,8 @@ namespace RiverCruise.Models.ShipManagement
             Flag = queryResult.Flag;
             Region = queryResult.Region;
             Remark = queryResult.Remark;
+            MmsiNummer = queryResult.MmsiNummer;
+            AantalPassagiers = queryResult.AantalPassagiers;
             var crew = queryResult.Crew.FirstOrDefault(x => x.From < DateTime.Now && x.Until >= DateTime.Now);
             if (crew != null)
             { 
